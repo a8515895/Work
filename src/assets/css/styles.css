@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+/*body {
+    padding-top: 50px;
+}
+
+.container {
+    width: 100%;
+}*/
+.content-wrapper{
+    min-height: 550px;
+}
+.animate {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.margin-0{
+    margin: 0px;
+}
+.margin-bottom-0{
+    margin-bottom: 0px;
+}
+.padding-0{
+    padding: 0px;
+}
+.padding-bottom-0{
+    padding-bottom: 0px;
+}
+.full-width{
+    width: 100%;
+}
+/*.me-table-bordered{
+    border: 1px solid #ddd;
+}
+.me-table-bordered td, .table.me-table-bordered>tbody>tr>td {
+    border: none;
+}*/
+.with-border-top{
+    border-top: 1px solid #ddd;
+}
+/* ******* Dynamic tabs ****** */
+.listTabs li a{
+    padding-right:20px;
+}
+.listTabs .closeTab{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 10px;
+    border: 1px solid;
+    padding: 1px;
+    line-height: 8px;
+    border-radius: 1px;
+    color:rgba(255, 255, 255, 0)
+}
+.listTabs.navbar-nav li:hover .closeTab{
+    color:#fff;
+}
+.listTabs li {
+    border-right: 1px solid #6c68b1;
+}
+.listTabs li.tabPrev, .listTabs li.tabNext, .listTabs li:nth-last-child(2){
+    border-right: none;
+}
+.listTabs .tabPrev a, .listTabs .tabNext a{
+    background: rgba(0, 0, 0, 0.04);
+    padding: 15px 10px;
+}
+/* ***** END Dynamic tabs ****** */
+
+.header-search {
+    padding: 9px 0px;
+}
+.header-search .input-group{
+    width: 250px;
+}
+
+.header-search .form-control{
+    background-color: #ececec;
+    border-top-left-radius: 5px!important;
+    border-bottom-left-radius: 5px!important;
+}
+.header-search .form-control:focus{
+    border-color: #dddddd!important;
+}
+
+/* **** Filter sidebar in module **** */
+.filter-module md-checkbox label{
+    padding-left: 5px;
+}
+.filter-details{    
+    padding: 5px;
+}
+
+.filter-details select.form-control{
+    height: 25px;
+    font-size: 12px;
+    padding: 3px;
+}
+.filter-details md-input-container .mat-input-placeholder {
+    padding-left: 0px;
+}
+
+/* ** End Filter sidebar in module *** */
