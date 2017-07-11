@@ -13,6 +13,8 @@ export class CustomerDetailComponent implements OnInit {
   @ViewChild('test') test: ElementRef;
   @ViewChild('inSearch') inSearch: ElementRef;
   @ViewChild('testspan') testspan: ElementRef;
+  displayInput: boolean = true;
+  displayText: boolean = false
   customerDetail = {
     status: '',
     info: {
@@ -43,14 +45,20 @@ export class CustomerDetailComponent implements OnInit {
         this.customerDetail = res;
       }
     );
-    
+
   }
   ngAfterViewInit() {
     jQuery('.tab-head').removeClass('active');
     jQuery('#' + this.value).addClass('active');
   }
-  testKey() {
-    console.log('hahaha');
+  setDisplayInput() {
+    this.displayInput = true;
+    this.displayText = false;
+  }
+  setDisplayText(val : any) {
+    console.log(val);
+    this.displayInput = false;
+    this.displayText = true;
   }
   checkInputSearch($event) {
     this.displayUL = true;
@@ -60,7 +68,7 @@ export class CustomerDetailComponent implements OnInit {
     else {
     }
   }
-  setContentSearch(){
+  setContentSearch() {
     var arr = new Array();
     this.customerDetail.tags.forEach(element => {
       arr.push(element.tag_name);
@@ -81,7 +89,7 @@ export class CustomerDetailComponent implements OnInit {
         if (check) this.customerDetail.info.tags_list.push({ id: element.id, tag_name: element.tag_name });
       }
     })
-    $event.target.value="";
+    $event.target.value = "";
     return this.customerDetail.info.tags_list;
   }
   addCall($event, val: string) {
