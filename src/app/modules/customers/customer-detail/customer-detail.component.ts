@@ -12,6 +12,7 @@ export class CustomerDetailComponent implements OnInit {
   @Input('value') value: any;
   @ViewChild('test') test: ElementRef;
   @ViewChild('inSearch') inSearch: ElementRef;
+  @ViewChild('testspan') testspan: ElementRef;
   customerDetail = {
     status: '',
     info: {
@@ -36,22 +37,20 @@ export class CustomerDetailComponent implements OnInit {
     public customersService: CustomersService,
     private routeParams: ActivatedRoute
   ) { }
-  ngOnInit() {    
+  ngOnInit() {
     this.customersService.getDetailCustomers(this.value).subscribe(
       (res: any) => {
         this.customerDetail = res;
       }
     );
-    var availableTags = [
-      {name : "ActionScript"}
-    ];
-    jQuery(this.inSearch.nativeElement).autocomplete({
-      source: availableTags,
-    })    
+    
   }
-  ngAfterViewInit(){
-    jQuery('.tab-pane').removeClass('active');  
-    jQuery('#'+this.value).addClass('active');
+  ngAfterViewInit() {
+    jQuery('.tab-head').removeClass('active');
+    jQuery('#' + this.value).addClass('active');
+  }
+  testKey() {
+    console.log('hahaha');
   }
   checkInputSearch($event) {
     this.displayUL = true;
@@ -61,17 +60,28 @@ export class CustomerDetailComponent implements OnInit {
     else {
     }
   }
-  selectTag(val: any) {
-    let check: boolean = true;
-    console.log(val);
+  setContentSearch(){
+    var arr = new Array();
     this.customerDetail.tags.forEach(element => {
-      if (element.id == val) {
+      arr.push(element.tag_name);
+    })
+    console.log(arr)
+    jQuery(this.inSearch.nativeElement).autocomplete({
+      source: arr
+    })
+  }
+  selectTag($event) {
+    let check: boolean = true;
+    let val = $event.target.value;
+    this.customerDetail.tags.forEach(element => {
+      if (element.tag_name == val) {
         this.customerDetail.info.tags_list.forEach(element2 => {
-          if (element2.id == val) check = false;
+          if (element2.tag_name == val) check = false;
         });
         if (check) this.customerDetail.info.tags_list.push({ id: element.id, tag_name: element.tag_name });
       }
     })
+    $event.target.value="";
     return this.customerDetail.info.tags_list;
   }
   addCall($event, val: string) {

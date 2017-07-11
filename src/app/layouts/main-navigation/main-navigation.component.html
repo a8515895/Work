@@ -244,13 +244,13 @@
 </aside>
 <!-- /.control-sidebar -->
 <div class="tab-content" (click)="setHidden()">
-  <div role="tabpanel" class="tab-pane active" id="qlkh" >
+  <div role="tabpanel" class="tab-head tab-pane active" id="qlkh" >
     <app-customer-list (addDetailTab)="addTabDetail($event)"></app-customer-list>
   </div>
-  <div role="tabpanel" class="tab-pane" id="{{i.id}}" *ngFor="let i of tabDetail">
+  <div role="tabpanel" class="tab-head tab-pane" id="{{i.id}}" *ngFor="let i of tabDetail">
     <app-customer-detail [value]="i.id"></app-customer-detail>
   </div>
-    <div role="tabpanel" class="tab-pane" id="login">
+    <div role="tabpanel" class="tab-head tab-pane" id="login">
     <login></login>
   </div>
 

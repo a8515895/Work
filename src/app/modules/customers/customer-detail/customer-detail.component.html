@@ -26,7 +26,7 @@
                   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <h3 class="profile-username">{{customerDetail.info.firstName}} {{customerDetail.info.lastName}} </h3>
                   </div>
-                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding : 20px">
                     <p><a href="#"><img class="img-responsive img-circle" src="../../../../assets/images/icon/fb.png" /></a></p>
                   </div>
                 </div>
@@ -41,7 +41,10 @@
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
-                      <input #inSearch class="form-control">
+                      <!--<select #test class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+                        <option value="{{i.id}}" *ngFor="let i of customerDetail.tags">{{i.tag_name}}</option>
+                      </select>-->
+                      <input (change)="selectTag($event)" (click)="setContentSearch()" type="text" #inSearch>
                     </div>
                   </div>
                 </div>

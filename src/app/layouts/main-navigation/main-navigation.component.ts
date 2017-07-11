@@ -48,7 +48,7 @@ export class MainNavigationComponent {
     return this.tabs = this.tabservice.getListDisplayTab();
   }
   chooseTab(id : number){
-    jQuery('.tab-pane').removeClass('active');
+    jQuery('.tab-head').removeClass('active');
     jQuery('#'+id).addClass('active');
   }
 }
