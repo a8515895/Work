@@ -8,6 +8,7 @@ export class TabService {
     private ticketTab = 0;
     constructor() {
         this.addTab(new Tab('qlkh', 'Quản Lý Khách Hàng'));
+        this.addTab(new Tab('login', 'Login'));
     }
     getListTab() {
         return this.tabs;

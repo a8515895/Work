@@ -14,11 +14,11 @@ import { MdSnackBar } from '@angular/material';
 
 export class CustomerListComponent implements OnInit {
   dataTest = '';
-  
+
   @Output("addDetailTab") valueTab = new EventEmitter<any>();
   customer: Customer;
   customersList: any;
-   checkedFilter = [
+  checkedFilter = [
     { fullname: true },
     { mobile: false },
     { address: false },
@@ -34,7 +34,7 @@ export class CustomerListComponent implements OnInit {
     private routeParams: ActivatedRoute,
     private snackBar: MdSnackBar
   ) {
-    
+
   }
   getAPI(link = "https://api-popupcontact-02.mitek.vn:4431/api/v1/customers") {
     this.customersService.getCustomers(link).subscribe(
@@ -93,14 +93,7 @@ export class CustomerListComponent implements OnInit {
       ]
     });
   }
-
-  testRestAPI() {
-    var getDataTest = this.customersService.getAll();
-    console.log(getDataTest.subscribe());
-  };
-
-
-  getValueTab(value : any) {
-    return this.valueTab.emit(value);
+  getValueTab(value: any) {
+        return this.valueTab.emit({id : value.id,name : value.name});
   }
 }

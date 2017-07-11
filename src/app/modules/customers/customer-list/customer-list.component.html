@@ -83,11 +83,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr (click)="getValueTab(customer)" *ngFor="let customer of customersList">
+                <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customersList">
                   <td>{{ customer.firstName }}</td>
                   <td>{{ customer.mobile }}</td>
                   <td>{{ customer.email || '-' }}</td>
-                  <td></td>
+                  <td>{{customer.urlDetail}}</td>
                   <td>{{ customer.address || '-' }}</td>
                 </tr>
               </tbody>

@@ -2,286 +2,279 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      {{value.firstName}} Profile
+      {{customerDetail.info.firstName}} Profile
     </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Examples</a></li>
-      <li class="active">User profile</li>
-    </ol>
   </section>
 
-  <!-- Main content -->
+  <!--Main content -->
   <section class="content">
-
-
     <div class="row">
       <div class="col-md-9">
-        <!-- /.box -->
-
-        <!-- About Me Box -->
         <div class="box box-primary">
           <div class="box-header with-border">
             <h3 class="box-title">About Me</h3>
           </div>
-          <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="../../../../assets/images/avatars/avatar5.png" alt="{{value.firstname}}">
-
-            <h3 class="profile-username text-center">{{value.firstName}} {{value.lastName}}</h3>
-
-            <p class="text-muted text-center">Software Engineer</p>
+          <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="../../../../assets/images/avatars/avatar5.png" alt="{{customerDetail.info.firstname}}">
+              </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <h3 class="profile-username">{{customerDetail.info.firstName}} {{customerDetail.info.lastName}} </h3>
+                  </div>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <p><a href="#"><img class="img-responsive img-circle" src="../../../../assets/images/icon/fb.png" /></a></p>
+                  </div>
+                </div>
+                <hr>
+                <p><strong><i class="fa fa-map-tags margin-r-5"></i> Tag</strong></p>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label style="margin : 5px" *ngFor="let tag of customerDetail.info.tags_list; let index = index" class="'label label-default">
+                        <a  href="#">{{tag.tag_name}}</a>
+                        <a href="#" (click)="removeTab(index)"><span class="fa fa-times pull-right"></span></a>
+                      </label>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                      <input #inSearch class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <strong><i class="fa fa-map-marker margin-r-5"></i> Địa Chỉ</strong>
+                <p class="text-muted">{{customerDetail.info.address}}</p>
+                <hr>
+                <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+                <p>{{customerDetail.info.note}}</p>
+              </div>
+            </div>
           </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville
-            </p>
-
-            <hr>
-
-            <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-            <p class="text-muted">{{value.address}}</p>
-
-            <hr>
-
-
-            <hr>
-
-            <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-            <p>{{value.note}}</p>
-          </div>
-          <!-- /.box-body -->
         </div>
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#test1" data-toggle="tab">Activity</a></li>
-            <li class=""><a href="#test2" data-toggle="tab">Activity</a></li>
+            <li class="active"><a href="#activity_{{customerDetail.info.id}}" data-toggle="tab">Activity</a></li>
+            <li class=""><a href="#profile_{{customerDetail.info.id}}" data-toggle="tab">Profile</a></li>
+            <li class="pull-right">
+              <button href="#" class="btn" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+                <span class="fa fa-cog"></span>
+                <span class="fa fa-caret-down"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
           </ul>
           <div class="tab-content">
-            <div role="tabpanel" class="active tab-pane" id="test1">
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png" alt="user image">
-                  <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Shared publicly - 7:30 PM today</span>
+            <div role="tabpanel" class="active tab-pane fade in" id="activity_{{customerDetail.info.id}}">
+              <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <strong><i class="fa fa-wechat margin-r-5"></i> Chat</strong>
                 </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone
-                  from bacon lovers to Charlie Sheen fans.
-                </p>
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                </ul>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <div>
+                    Conversation with amanda
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default"><span class="fa fa-plus"></span></button>
+                      <button type="button" class="btn btn-default"><span class="fa fa-caret-right"></span></button>
+                    </div>
+                  </div>
+                  <p class="text-muted">13/02/2017</p>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                </div>
               </div>
-              <div class="post clearfix">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png" alt="User Image">
-                  <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Sent you a message - 3 days ago</span>
+              <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <strong><i class="fa fa-wechat margin-r-5"></i> Chat</strong>
                 </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone
-                  from bacon lovers to Charlie Sheen fans.
-                </p>
-
-                <form class="form-horizontal">
-                  <div class="form-group margin-bottom-none">
-                    <div class="col-sm-9">
-                      <input class="form-control input-sm" placeholder="Response">
-                    </div>
-                    <div class="col-sm-3">
-                      <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <div>
+                    Conversation with amanda
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default"><span class="fa fa-plus"></span></button>
+                      <button type="button" class="btn btn-default"><span class="fa fa-caret-right"></span></button>
                     </div>
                   </div>
-                </form>
+                  <p class="text-muted">13/02/2017</p>
+
+                </div>
               </div>
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png" alt="User Image">
-                  <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Posted 5 photos - 5 days ago</span>
+              <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <strong><i class="fa fa-tasks margin-r-5"></i> Task</strong>
                 </div>
-                <!-- /.user-block -->
-                <div class="row margin-bottom">
-                  <div class="col-sm-6">
-                    <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                      </div>
-                      <!-- /.col -->
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <div>
+                    Outbound Call from +14152300650
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default"><span class="fa fa-plus"></span></button>
+                      <button type="button" class="btn btn-default"><span class="fa fa-share-square-o"></span></button>
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdown_{{customerDetail.info.id}}" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true"><span class="fa fa-caret-down"></span></button>
+                      <ul class="dropdown-menu" attr.aria-labelledby="dropdown_{{customerDetail.info.id}}">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+
                     </div>
-                    <!-- /.row -->
                   </div>
-                  <!-- /.col -->
+                  <p class="text-muted">13/02/2017</p>
+
+
                 </div>
-                <!-- /.row -->
+              </div>
+              <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <strong><i class="fa fa-wechat margin-r-5"></i> Chat</strong>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <div>
+                    Conversation with amanda
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default"><span class="fa fa-plus"></span></button>
+                      <button type="button" class="btn btn-default"><span class="fa fa-caret-right"></span></button>
+                    </div>
+                  </div>
+                  <p class="text-muted">13/02/2017</p>
 
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                </ul>
-
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                </div>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="test2">
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png" alt="user image">
-                  <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Shared publicly - 7:30 PM today</span>
-                </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone
-                  from bacon lovers to Charlie Sheen fans.
-                </p>
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                </ul>
+            <div role="tabpanel" class="tab-pane fade" id="profile_{{customerDetail.info.id}}">
+              <div class="row">
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <button class="btn btn-default pull-right">Edit Profile</button>
+                </div>
+
               </div>
-              <div class="post clearfix">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png" alt="User Image">
-                  <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Sent you a message - 3 days ago</span>
-                </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone
-                  from bacon lovers to Charlie Sheen fans.
-                </p>
+              <div class="row">
 
-                <form class="form-horizontal">
-                  <div class="form-group margin-bottom-none">
-                    <div class="col-sm-9">
-                      <input class="form-control input-sm" placeholder="Response">
-                    </div>
-                    <div class="col-sm-3">
-                      <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                    </div>
-                  </div>
-                </form>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <p class="text-muted">Name</p>
+                </div>
+
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                  <p>{{customerDetail.info.firstName}} {{customerDetail.info.lastName}}</p>
+                </div>
+
               </div>
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png" alt="User Image">
-                  <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Posted 5 photos - 5 days ago</span>
-                </div>
-                <!-- /.user-block -->
-                <div class="row margin-bottom">
-                  <div class="col-sm-6">
-                    <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../../../assets/images/avatars/avatar5.png" alt="Photo">
-                      </div>
-                      <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
 
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                </ul>
+              <div class="row">
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <p class="text-muted">Title</p>
+                </div>
+
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                  <p>{{customerDetail.info.titleId}}</p>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <p class="text-muted">Email</p>
+                </div>
+
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                  <p> {{customerDetail.info.email}}</p>
+                </div>
+
               </div>
             </div>
-            <!-- /.tab-pane -->
-            <!-- /.tab-pane -->
           </div>
-          <!-- /.tab-content -->
         </div>
-        <!-- /.box -->
       </div>
-      <!-- /.col -->
-      <div class="col-md-3">
+      <div class="col-md-3" style="background-color : white; padding : 15px">
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <select class="form-control">
+              <option>+84</option>
+              <option>+1</option>
+            </select>
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <div class="input-group">
+              <input #in type="text" class="form-control text-right" value="{{number_list}}" (keydown)="checkInput($event)">
+              <span class="input-group-btn">
+                <button (click)="clearCall()" class="btn btn-default" type="button">X</button>
+              </span>
 
-        <!-- /.nav-tabs-custom -->
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top : 10px">
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,1)" class="btn btn-block btn-default" href="#">1</a>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,2)" class="btn btn-block btn-default" href="#">2</a>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,3)" class="btn btn-block btn-default" href="#">3</a>
+          </div>
+
+        </div>
+
+        <div class="row" style="margin-top : 10px">
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,4)" class="btn btn-block btn-default" href="#">4</a>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,5)" class="btn btn-block btn-default" href="#">5</a>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,6)" class="btn btn-block btn-default" href="#">6</a>
+          </div>
+
+        </div>
+
+        <div class="row" style="margin-top : 10px">
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,7)" class="btn btn-block btn-default" href="#">7</a>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,8)" class="btn btn-block btn-default" href="#">8</a>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a (click)="addCall(in,9)" class="btn btn-block btn-default" href="#">9</a>
+          </div>
+
+        </div>
+
+        <div class="row" style="margin-top : 10px">
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <a class="btn btn-block btn-success" href="#">Gọi Điện Thoại</a>
+          </div>
+
+        </div>
+
       </div>
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
 
   </section>
-  <!-- /.content -->
 </div>

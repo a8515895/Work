@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabService } from '../TabService.service';
+declare var jQuery : any;
 @Component({
   selector: 'app-main-navigation',
   templateUrl: './main-navigation.component.html',
@@ -9,19 +10,19 @@ import { TabService } from '../TabService.service';
 })
 export class MainNavigationComponent {
   public tabs: any;
-  public tabDetail : any;
-  public hid : string="none";
-  public customerDetail : any;
+  public tabDetail: any;
+  public hid: string = "none";
+  public customerDetail: any;
   constructor(public tabservice: TabService) {
     this.tabs = this.tabservice.getListDisplayTab();
     this.tabDetail = this.tabservice.getListTabDetail();
 
   }
-  setAppear(){
-    this.hid=""
+  setAppear() {
+    this.hid = ""
   }
-  setHidden(){
-    this.hid="none"
+  setHidden() {
+    this.hid = "none"
   }
   addTab(id: string, name: string) {
     this.tabservice.addTab({ id: id, name: name });
@@ -41,9 +42,13 @@ export class MainNavigationComponent {
   prevTab() {
     return this.tabs = this.tabservice.prevTab();
   }
-  addTabDetail($event) {    
-    this.tabservice.addTabDetail({ id: $event.id, name: $event.firstName });
-    this.customerDetail = $event;
-   return this.tabs = this.tabservice.getListDisplayTab();
+  addTabDetail($event) {
+    this.tabservice.addTabDetail({ id: $event.id, name: $event.name });
+    this.customerDetail = $event;    
+    return this.tabs = this.tabservice.getListDisplayTab();
+  }
+  chooseTab(id : number){
+    jQuery('.tab-pane').removeClass('active');
+    jQuery('#'+id).addClass('active');
   }
 }

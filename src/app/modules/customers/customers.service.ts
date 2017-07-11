@@ -22,20 +22,24 @@ export class CustomersService {
       { id: 'kh4', Name: "Khong Quoc Toan 04", Mobile: "0933961912", Phone: "", Email: '', Address: '' },
     ];
   }
-  private extractData(res : Response){
+  private extractData(res: Response) {
     let body = res.json();
     return body || {};
   }
-  getCustomers(link : string): Observable<any>{
+  getCustomers(link: string): Observable<any> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(link,headers,options)
+    return this.http.post(link, headers, options)
       .map(this.extractData)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-
+  getDetailCustomers(id : number) {
+    return this.http.get("https://api-popupcontact-02.mitek.vn:4431/api/v1/customer/"+id)
+      .map(this.extractData)
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
   getAll() {
-    let body = { 'mobiles': ['101', '102'], startDate : '2017-01-01', endDate : '', callType :'in' };
+    let body = { 'mobiles': ['101', '102'], startDate: '2017-01-01', endDate: '', callType: 'in' };
     let bodyString = JSON.stringify(body); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
 

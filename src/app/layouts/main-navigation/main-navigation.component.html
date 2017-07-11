@@ -19,7 +19,7 @@
       <ul class="nav navbar-nav listTabs" role="tablist">
         <li class="tabPrev"><a href="javascript:void(0)" (click)="prevTab()"><i class="fa fa-caret-left"></i></a></li>
         <li *ngFor="let i of tabs;let in = index" role="presentation">
-          <a href="#{{i.id}}" aria-controls="home" role="tab" data-toggle="tab">{{i.name}}<span (click)="closeTab(in)" class="closeTab" title="Close">x</span></a>
+          <a href="#{{i.id}}" (click)="chooseTab(i.id)" aria-controls="home" role="tab" data-toggle="tab">{{i.name}}<span (click)="closeTab(in)" class="closeTab" title="Close">x</span></a>
         </li>
         <!-- <li><a href="customers">Tab khách hàng<span class="closeTab" title="Close">x</span></a></li> -->
         <li class="tabNext"><a href="javascript:void(0)" (click)="nextTab()"><i class="fa fa-caret-right"></i></a></li>
@@ -34,7 +34,7 @@
             <div class="input-group input-group-sm ">
               <input class="fade" [ngStyle]="{display : hid}" type="text" name="q" class="form-control" placeholder="Search..." autocomplete="off" />
               <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"(click)="setAppear()"><i class="fa fa-search"></i></button>
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat pull-right"(click)="setAppear()"><i class="fa fa-search"></i></button>
               </span>
             </div>
           </form>
@@ -244,11 +244,14 @@
 </aside>
 <!-- /.control-sidebar -->
 <div class="tab-content" (click)="setHidden()">
-  <div role="tabpanel" class="tab-pane fade in active" id="qlkh">
+  <div role="tabpanel" class="tab-pane active" id="qlkh" >
     <app-customer-list (addDetailTab)="addTabDetail($event)"></app-customer-list>
   </div>
-  <div role="tabpanel" class="tab-pane fade " id="{{i.id}}" *ngFor="let i of tabDetail">
-    <app-customer-detail [value]="customerDetail"></app-customer-detail>
+  <div role="tabpanel" class="tab-pane" id="{{i.id}}" *ngFor="let i of tabDetail">
+    <app-customer-detail [value]="i.id"></app-customer-detail>
+  </div>
+    <div role="tabpanel" class="tab-pane" id="login">
+    <login></login>
   </div>
 
 </div>
