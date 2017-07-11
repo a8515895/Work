@@ -19,6 +19,8 @@ export class CustomerDetailComponent implements OnInit {
     status: '',
     info: {
       id: '',
+      firstname: '',
+      address: '',
       firstName: '',
       lastName: '',
       titleId: '',
