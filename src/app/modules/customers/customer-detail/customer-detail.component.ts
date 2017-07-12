@@ -1,4 +1,5 @@
 import { CustomersService } from './../customers.service';
+import { FormControl } from '@angular/forms';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 declare var jQuery: any;
@@ -10,6 +11,7 @@ declare var jQuery: any;
 })
 export class CustomerDetailComponent implements OnInit {
   @Input('value') value: any;
+  @Input('mdAutocomplete') autocomplete;
   @ViewChild('test') test: ElementRef;
   @ViewChild('inSearch') inSearch: ElementRef;
   @ViewChild('testspan') testspan: ElementRef;
@@ -35,12 +37,71 @@ export class CustomerDetailComponent implements OnInit {
       tag_name: ''
     }]
   };
+  ///
+  stateCtrl: FormControl;
+  filteredStates: any;;
+  states = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming',
+  ];
+
+  ///
   displayUL: boolean = false;
   number_list: string = "";
   constructor(
     public customersService: CustomersService,
     private routeParams: ActivatedRoute
-  ) { }
+  ) {
+    this.stateCtrl = new FormControl();
+  }
   ngOnInit() {
     this.customersService.getDetailCustomers(this.value).subscribe(
       (res: any) => {
@@ -49,7 +110,27 @@ export class CustomerDetailComponent implements OnInit {
     );
 
   }
+  filterStates(val: string) {
+    return val ? this.states.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
+      : this.states;
+  }
+  autoComplete(val : any) {
+    this.states=new Array();
+    let check : boolean= true;
+    this.customerDetail.tags.forEach(ele =>{
+      this.customerDetail.info.tags_list.forEach(element2 => {
+        if(ele.tag_name==element2.tag_name) check=false;   
+      })
+      if(check)this.states.push(ele.tag_name);
+      check = true;
+    });    
+    this.filteredStates = this.stateCtrl.valueChanges
+      .startWith(null)
+      .map(name => this.filterStates(name));
+    val.value="";
+  }
   ngAfterViewInit() {
+
     jQuery('.tab-head').removeClass('active');
     jQuery('#' + this.value).addClass('active');
   }
@@ -57,7 +138,7 @@ export class CustomerDetailComponent implements OnInit {
     this.displayInput = true;
     this.displayText = false;
   }
-  setDisplayText(val : any) {
+  setDisplayText(val: any) {
     console.log(val);
     this.displayInput = false;
     this.displayText = true;
@@ -80,9 +161,8 @@ export class CustomerDetailComponent implements OnInit {
       source: arr
     })
   }
-  selectTag($event) {
+  selectTag(val: any) {
     let check: boolean = true;
-    let val = $event.target.value;
     this.customerDetail.tags.forEach(element => {
       if (element.tag_name == val) {
         this.customerDetail.info.tags_list.forEach(element2 => {
@@ -91,7 +171,6 @@ export class CustomerDetailComponent implements OnInit {
         if (check) this.customerDetail.info.tags_list.push({ id: element.id, tag_name: element.tag_name });
       }
     })
-    $event.target.value = "";
     return this.customerDetail.info.tags_list;
   }
   addCall($event, val: string) {

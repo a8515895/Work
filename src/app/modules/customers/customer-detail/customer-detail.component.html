@@ -1,68 +1,54 @@
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      {{customerDetail.info.firstName}} Profile
-    </h1>
-  </section>
-
   <!--Main content -->
   <section class="content">
     <div class="row">
       <div class="col-md-9">
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">About Me</h3>
-          </div>
+        <div class="box box-primary" style="padding-bottom : 10px">
           <div class="row">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
               <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="../../../../assets/images/avatars/avatar5.png" alt="{{customerDetail.info.firstname}}">
+                <img class="profile-user-img img-responsive img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png"
+                  alt="{{customerDetail.info.firstname}}">
               </div>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-              <div class="box-body">
-                <div class="row">
-                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <h3 class="profile-username">{{customerDetail.info.firstName}} {{customerDetail.info.lastName}} </h3>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="profile-username" >
+                    {{customerDetail.info.firstName}} {{customerDetail.info.lastName}} 
+                    <a href="#"><img style="display: inline-block" class="img-responsive img-circle" src="../../../../assets/images/icon/fb.png" /></a>
                   </div>
-                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding : 20px">
-                    <p><a href="#"><img class="img-responsive img-circle" src="../../../../assets/images/icon/fb.png" /></a></p>
-                  </div>
+                  <p class="text-muted">Software Engineer</p>
                 </div>
-                <hr>
-                <p><strong><i class="fa fa-map-tags margin-r-5"></i> Tag</strong></p>
-                <div class="row">
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label style="margin : 5px" *ngFor="let tag of customerDetail.info.tags_list; let index = index" class="'label label-default">
-                        <a  href="#">{{tag.tag_name}}</a>
-                        <a href="#" (click)="removeTab(index)"><span class="fa fa-times pull-right"></span></a>
-                      </label>
-                  </div>
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="form-group">
-                      <!--<select #test class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                        <option value="{{i.id}}" *ngFor="let i of customerDetail.tags">{{i.tag_name}}</option>
-                      </select>-->
-                      <input (change)="selectTag($event)" (click)="setContentSearch()" type="text" #inSearch>
+              </div>
+              <div class="row" style="margin-bottom : 1px">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <label style="margin : 1px;padding : 1px" *ngFor="let tag of customerDetail.info.tags_list; let index = index" class="'label label-success">
+                        <small>{{tag.tag_name}}</small>
+                        <a style="color : white;" href="#" (click)="removeTab(index)"><span class="fa fa-times pull-right"></span></a>
+                  </label>
+                  <md-input-container>
+                    <input #insearch (click)="autoComplete(insearch)" placeholder="Tag" mdInput value="" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+                  </md-input-container>
+                  <md-autocomplete #auto="mdAutocomplete">
+                    <md-option (click)="selectTag(state)" *ngFor="let state of filteredStates | async" [value]="state">
+                      {{ state }}
+                    </md-option>
+                  </md-autocomplete>
+                </div>
+              </div>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+              <div class="row" style="margin-right : 15px">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                  <div *ngIf="displayInput"><input class="form-control" (click)="setDisplayText(textarea)" value="{{customerDetail.info.note}}" />                    </div>
+                  <div *ngIf="displayText">
+                    <textarea class="form-control" #textarea>{{customerDetail.info.note}}</textarea>
+                    <div class="pull-right" style="margin-top: 10px">
+                      <button class="btn btn-success">Nhập</button>
+                      <button (click)="setDisplayInput()" class="btn btn-danger">Thoát</button>
                     </div>
                   </div>
                 </div>
-                <hr>
-                <strong><i class="fa fa-map-marker margin-r-5"></i> Địa Chỉ</strong>
-                <p class="text-muted">{{customerDetail.info.address}}</p>
-                <hr>
-                <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-                <div>
-                    <div *ngIf="displayInput"><input class="form-control" (click)="setDisplayText(textarea)" value="{{customerDetail.info.note}}"/> </div>
-                    <div *ngIf="displayText">
-                      <textarea class="form-control" #textarea>{{customerDetail.info.note}}</textarea>
-                      <div>
-                        <button class="btn btn-success">Nhập</button>
-                        <button  (click)="setDisplayInput()"  class="btn btn-danger">Thoát</button>
-                      </div>
-                    </div>
-                  </div>
               </div>
             </div>
           </div>
