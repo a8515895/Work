@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 
 @NgModule(
@@ -23,10 +24,11 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
             MdAutocompleteModule,
             MdInputModule
         ],
-        declarations: [CustomerListComponent, CustomerDetailComponent],
+        declarations: [CustomerListComponent, CustomerDetailComponent,FilterPipe],
         exports : [
             CustomerListComponent,
             CustomerDetailComponent,
+            FilterPipe,
             MdAutocompleteModule,
             MdInputModule
         ]

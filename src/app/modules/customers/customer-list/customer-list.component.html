@@ -11,7 +11,7 @@
 
   <!-- Main content -->
   <section class="content">
-    
+
     <!-- Default box -->
     <div class="box">
       <div class="box-body">
@@ -74,6 +74,15 @@
           <div class="col-md-9 padding-0">
             <table class="table table-bordered table-hover">
               <thead>
+                 <tr class="active">
+                  <th><input type="text" name="firstName" [(ngModel)]="filter.firstName" /></th>
+                  <th><input type="text" name="mobile" [(ngModel)]="filter.mobile" /></th>
+                  <th><input type="text" name="email" [(ngModel)]="filter.email" /></th>
+                  <th><input type="text" name="urlDetail" [(ngModel)]="filter.urlDetail" /></th> 
+                  <th><input type="text" name="address" [(ngModel)]="filter.address" /></th>
+                </tr> 
+              </thead>
+              <thead>
                 <tr class="active">
                   <th>Name</th>
                   <th>Mobile</th>
@@ -83,21 +92,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customersList">
+                <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customers | filter:filter">
                   <td>{{ customer.firstName }}</td>
                   <td>{{ customer.mobile }}</td>
                   <td>{{ customer.email || '-' }}</td>
-                  <td>{{customer.urlDetail}}</td>
+                  <td></td>
                   <td>{{ customer.address || '-' }}</td>
                 </tr>
               </tbody>
-            </table>            
+            </table>
             <ul class="pagination pull-right">
               <li><a href="#" *ngIf="prevPage" (click)="btnPrevPage()">&laquo;</a></li>
-              <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="#"  (click)="clickGetAPI(i.url)" >{{i.index+1}}</a></li>
-              <li><a href="#" *ngIf="nextPage"  (click)="btnNextPage()">&raquo;</a></li>
+              <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="#" (click)="clickGetAPI(i.url)">{{i.index+1}}</a></li>
+              <li><a href="#" *ngIf="nextPage" (click)="btnNextPage()">&raquo;</a></li>
             </ul>
-            
+
           </div>
         </div>
 

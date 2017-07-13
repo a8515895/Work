@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class CustomersService {
+  customer: Customer;
   constructor(private http: Http) { }
 
   //List api link
@@ -33,9 +34,16 @@ export class CustomersService {
       .map(this.extractData)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getDetailCustomers(id : number) {
-    return this.http.get("https://api-popupcontact-02.mitek.vn:4431/api/v1/customer/"+id)
+  getDetailCustomers(id: number) {
+    return this.http.get("https://api-popupcontact-02.mitek.vn:4431/api/v1/customer/" + id)
       .map(this.extractData)
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  TestGet(): Observable<Customer[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post("https://api-popupcontact-02.mitek.vn:4431/api/v1/customers", headers, options)
+      .map(res => res.json().data)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   getAll() {

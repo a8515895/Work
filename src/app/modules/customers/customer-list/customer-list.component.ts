@@ -1,9 +1,7 @@
-import { RestApiService } from '../../../common/restapi.service';
 import { CustomersService } from './../customers.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Customer } from './../customer'; //Table column
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Customer } from './../customer';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-customer-list',
@@ -11,12 +9,12 @@ import { MdSnackBar } from '@angular/material';
   styleUrls: ['./customer-list.component.css'],
   // providers : [ CustomersService ]
 })
-
 export class CustomerListComponent implements OnInit {
   dataTest = '';
 
   @Output("addDetailTab") valueTab = new EventEmitter<any>();
-  customer: Customer;
+  filter: Customer = new Customer();
+  customers : Customer[];
   customersList: any;
   checkedFilter = [
     { fullname: true },
@@ -29,12 +27,11 @@ export class CustomerListComponent implements OnInit {
   currentPage: number;
   pagination = new Array();
 
-  constructor(private apiService: RestApiService,
+  constructor(
     private customersService: CustomersService,
     private routeParams: ActivatedRoute,
-    private snackBar: MdSnackBar
   ) {
-
+    this.getAPI();
   }
   getAPI(link = "https://api-popupcontact-02.mitek.vn:4431/api/v1/customers") {
     this.customersService.getCustomers(link).subscribe(
@@ -79,20 +76,14 @@ export class CustomerListComponent implements OnInit {
   clickGetAPI(link) {
     return this.getAPI(link);
   }
-  ngOnInit() {
-    this.getAPI();
+  ngOnInit() {   
+    this.customersService.TestGet().subscribe(
+      (customers : Customer[]) => {
+        this.customers = customers;
+      }) 
   };
 
-  oncheckedFilter() {
-    //Error
-    this.snackBar.open('Đây là thông báo snackBar ....!', 'Close', {
-      duration: 30000,
-      extraClasses: [
-        'alert-success',
-        // 'alert-error',
-      ]
-    });
-  }
+
   getValueTab(value: any) {
         return this.valueTab.emit({id : value.id,name : value.name});
   }
