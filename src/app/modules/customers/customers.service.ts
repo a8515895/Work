@@ -9,12 +9,15 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class CustomersService {
-  customer: Customer;
-  constructor(private http: Http) { }
+  public customer: Customer[]=[];
+  constructor(private http: Http) { 
+  }
 
   //List api link
   private _api_getAllCustomers = 'https://api-popupcontact-02.mitek.vn:4431/api/v1/getCallsReport';
-
+  addCustomer(customer : Customer){
+    this.customer.push(customer);
+  }
   getCustomersList() {
     return [
       { id: 'kh1', Name: "Khong Quoc Toan 01", Mobile: "0933961912", Phone: "", Email: 'Load from service', Address: '' },

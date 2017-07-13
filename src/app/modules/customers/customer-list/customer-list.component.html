@@ -17,23 +17,32 @@
       <div class="box-body">
 
         <div class="row" class="listviewBorder">
-          <!--<div class="col-md-3 padding-0 filter-module">
+          <div class="col-md-3 padding-0 filter-module">
             <table class="table table-bordered">
               <tr class="active">
-                <th (click)="testRestAPI()">FILTER BY ... <i class="fa fa-search pull-right"></i> </th>
+                <th [hidden]="hiddenSearchInput2" (click)="setDisplayInput()">FILTER BY ... <i class="fa fa-search pull-right"></i> </th>
+                <th [hidden]="hiddenSearchInput">
+                  <div class="input-group margin">
+                    <input class="form-control">
+                    <span class="input-group-addon">
+                    <a href="#"><span class="fa fa-search"></span></a>
+                    </span>
+                  </div>
+                </th>
               </tr>
               <tr class="with-border-top">
                 <td>
                   <div class="checkbox margin-0">
-                    <md-checkbox class="" [(ngModel)]="checkedFilter.firstName" (click)="oncheckedFilter()"> firstName {{checkedFilter.firstName}} </md-checkbox>
-                    <div [hidden]="!checkedFilter.firstName" class="filter-details">
-                      <select name="" id="" class="form-control">
-                        <option value="">Condition</option>
+                    <md-checkbox [(ngModel)]="nameCheck" class=""> firstName {{checkedFilter.firstName}} </md-checkbox>
+                    <div [hidden]="!nameCheck" class="filter-details">
+                      <select #slName name="" id="" class="form-control">
+                        <option value="like">Có Chứa</option>
+                        <option value="unlike">Không Chứa</option>
                         <option value="="> = </option>
                         <option value="<>"> <> </option>
                       </select>
                       <md-input-container class="full-width">
-                        <input mdInput placeholder="Enter keyword">
+                        <input #inName mdInput placeholder="Enter keyword">
                       </md-input-container>
                     </div>
                   </div>
@@ -42,16 +51,16 @@
               <tr>
                 <td>
                   <div class="checkbox margin-0">
-                    <md-checkbox class="" [(ngModel)]="checkedFilter.mobile"> Mobile {{checkedFilter.mobile}} </md-checkbox>
-                    <div [hidden]="!checkedFilter.mobile" class="filter-details">
+                    <md-checkbox [(ngModel)]="mobileCheck"> Mobile</md-checkbox>
+                    <div [hidden]="!mobileCheck" class="filter-details">
                       <select name="" id="" class="form-control">
                         <option value="">Condition</option>
                         <option value="="> = </option>
                         <option value="<>"> <> </option>
                       </select>
                       <md-input-container class="full-width">
-                        <input mdInput #postalCode maxlength="12" placeholder="Enter number" value="">
-                        <md-hint align="end">{{postalCode.value.length}} / 12</md-hint>
+                        <input mdInput maxlength="12" placeholder="Enter number" value="">
+                        <md-hint align="end"></md-hint>
                       </md-input-container>
                     </div>
                   </div>
@@ -60,30 +69,36 @@
               <tr>
                 <td>
                   <div class="checkbox margin-0">
-                    <md-checkbox class="" [(ngModel)]="checkedFilter.address"> Address {{checkedFilter.address}} </md-checkbox>
+                    <md-checkbox [(ngModel)]="adCheck" class=""> Address</md-checkbox>
+                    <div [hidden]="!adCheck" class="filter-details">
+                      <select name="" id="" class="form-control">
+                        <option value="">Condition</option>
+                        <option value="="> = </option>
+                        <option value="<>"> <> </option>
+                      </select>
+                      <md-input-container class="full-width">
+                        <input mdInput maxlength="12" placeholder="Enter number" value="">
+                        <md-hint align="end"></md-hint>
+                      </md-input-container>
+                    </div>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>
-                  {{ customer.Name }}
+                  <div class="margin-0" [hidden]="hiddenBtnSearch">
+                    <button (click)="filter()" class="btn btn-success">Áp dụng lọc</button>
+                    <button class="btn btn-danger">Hủy</button>
+                  </div>
                 </td>
               </tr>
             </table>
-          </div>-->
+          </div>
           <div class="col-md-9 padding-0">
             <table class="table table-bordered table-hover">
               <thead>
-                 <tr class="active">
-                  <th><input type="text" name="firstName" [(ngModel)]="filter.firstName" /></th>
-                  <th><input type="text" name="mobile" [(ngModel)]="filter.mobile" /></th>
-                  <th><input type="text" name="email" [(ngModel)]="filter.email" /></th>
-                  <th><input type="text" name="urlDetail" [(ngModel)]="filter.urlDetail" /></th> 
-                  <th><input type="text" name="address" [(ngModel)]="filter.address" /></th>
-                </tr> 
-              </thead>
-              <thead>
                 <tr class="active">
+                  <th>ID</th>
                   <th>Name</th>
                   <th>Mobile</th>
                   <th>Email</th>
@@ -92,7 +107,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customers | filter:filter">
+                <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customersList">
+                  <td>{{ customer.id }}</td>
                   <td>{{ customer.firstName }}</td>
                   <td>{{ customer.mobile }}</td>
                   <td>{{ customer.email || '-' }}</td>

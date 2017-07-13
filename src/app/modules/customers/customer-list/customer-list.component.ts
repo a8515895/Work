@@ -1,21 +1,23 @@
 import { CustomersService } from './../customers.service';
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { FilterService } from '../filter.service';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { Customer } from './../customer';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css'],
-  // providers : [ CustomersService ]
+  providers: [FilterService, CustomersService]
 })
 export class CustomerListComponent implements OnInit {
   dataTest = '';
 
   @Output("addDetailTab") valueTab = new EventEmitter<any>();
-  filter: Customer = new Customer();
-  customers : Customer[];
+  customers: Customer[];
   customersList: any;
+  customerTempList: any;
   checkedFilter = [
     { fullname: true },
     { mobile: false },
@@ -26,12 +28,36 @@ export class CustomerListComponent implements OnInit {
   nextPage: boolean = false;
   currentPage: number;
   pagination = new Array();
-
+  //
+  hiddenBtnSearch: boolean = true;
+  hiddenSearchInput: boolean = true;
+  hiddenSearchInput2: boolean = false;
+  //
+  @ViewChild('slName') slName: any;
+  @ViewChild('inName') inName: any;
+  nameCheck: boolean = false;
+  mobileCheck: boolean = false;
+  adCheck: boolean = false;
+  //
+  ngAfterViewChecked() {
+    if (this.nameCheck == true || this.mobileCheck == true || this.adCheck == true) {
+      this.hiddenBtnSearch = false
+    } else {
+      this.hiddenBtnSearch = true
+    }
+  }
+  //
   constructor(
     private customersService: CustomersService,
     private routeParams: ActivatedRoute,
+    private filterService: FilterService
   ) {
     this.getAPI();
+  }
+
+  setDisplayInput() {
+    this.hiddenSearchInput = false;
+    this.hiddenSearchInput2 = true;
   }
   getAPI(link = "https://api-popupcontact-02.mitek.vn:4431/api/v1/customers") {
     this.customersService.getCustomers(link).subscribe(
@@ -39,7 +65,7 @@ export class CustomerListComponent implements OnInit {
         let i = 0;
         let j = 0;
         this.customersList = res.data;
-        this.checkedFilter = res.data;
+        this.customerTempList = res.data;
         this.pagination = [];
         for (i; i < res.last_page; i++) {
           j++;
@@ -76,15 +102,44 @@ export class CustomerListComponent implements OnInit {
   clickGetAPI(link) {
     return this.getAPI(link);
   }
-  ngOnInit() {   
-    this.customersService.TestGet().subscribe(
-      (customers : Customer[]) => {
-        this.customers = customers;
-      }) 
+  ngOnInit() {
+
+    this.getAPI();
   };
-
-
   getValueTab(value: any) {
-        return this.valueTab.emit({id : value.id,name : value.name});
+
+    return this.valueTab.emit({ id: value.id, name: value.name });
+  }
+  filter() {
+    let temp = new Array();
+    console.log(this.slName.nativeElement.value);
+    if (this.nameCheck) {
+      switch (this.slName.nativeElement.value) {
+        case "=":
+          temp = this.customerTempList.filter(element => {
+            return element.firstName == this.inName.nativeElement.value
+          });
+          break;
+        case "<>":
+          temp = this.customerTempList.filter(element => {
+            return element.firstName != this.inName.nativeElement.value
+          });
+          break;
+        case "like":
+          temp = this.customerTempList.filter(element => {
+            return element.firstName.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) > -1;
+          });
+          break;
+        case "unlike":
+          temp = this.customerTempList.filter(element => {
+            return element.firstName.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) == -1;
+          });
+          break;
+      }
+      if(this.adCheck){
+        
+      }
+      return this.customersList = temp;
+    }
   }
 }
