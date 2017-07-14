@@ -15,7 +15,6 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-body">
-
         <div class="row" class="listviewBorder">
           <div class="col-md-3 padding-0 filter-module">
             <table class="table table-bordered">
@@ -33,7 +32,7 @@
               <tr class="with-border-top">
                 <td>
                   <div class="checkbox margin-0">
-                    <md-checkbox [(ngModel)]="nameCheck" class=""> firstName {{checkedFilter.firstName}} </md-checkbox>
+                    <md-checkbox [(ngModel)]="nameCheck" class=""> firstName </md-checkbox>
                     <div [hidden]="!nameCheck" class="filter-details">
                       <select #slName name="" id="" class="form-control">
                         <option value="like">Có Chứa</option>
@@ -53,13 +52,14 @@
                   <div class="checkbox margin-0">
                     <md-checkbox [(ngModel)]="mobileCheck"> Mobile</md-checkbox>
                     <div [hidden]="!mobileCheck" class="filter-details">
-                      <select name="" id="" class="form-control">
-                        <option value="">Condition</option>
+                      <select #slMobile name="" id="" class="form-control">
+                        <option value="like">Chứa</option>
+                        <option value="unlike">Không Chứa</option>
                         <option value="="> = </option>
                         <option value="<>"> <> </option>
                       </select>
                       <md-input-container class="full-width">
-                        <input mdInput maxlength="12" placeholder="Enter number" value="">
+                        <input #inMobile mdInput maxlength="12" placeholder="Enter number" value="">
                         <md-hint align="end"></md-hint>
                       </md-input-container>
                     </div>
@@ -95,28 +95,41 @@
             </table>
           </div>
           <div class="col-md-9 padding-0">
-            <table class="table table-bordered table-hover">
+             <!-- <table class="table table-bordered table-hover">
               <thead>
                 <tr class="active">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Mobile</th>
-                  <th>Email</th>
-                  <th>Facebook</th>
-                  <th>Address</th>
+                  <th>
+                     <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown> 
+                  </th>
+                  <th *ngFor="let i of displayKeyColumn">{{i}}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customersList">
+                  <td></td>
+                  <th *ngFor="let i of displayColumn">{{ customer.id }}</th>
                   <td>{{ customer.id }}</td>
                   <td>{{ customer.firstName }}</td>
                   <td>{{ customer.mobile }}</td>
                   <td>{{ customer.email || '-' }}</td>
-                  <td></td>
-                  <td>{{ customer.address || '-' }}</td>
+                  <td>{{ customer.address || '-' }}</td> 
                 </tr>
               </tbody>
-            </table>
+            </table>  -->
+             <table class="table table-bordered table-hover">
+              <tbody>
+                <tr>
+                  <td>
+                    <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                  </td>
+                  <td *ngFor="let i of displayKeyColumn">{{i}}</td>
+                </tr>
+                <tr *ngFor="let i of arr">
+                  <td></td>
+                  <td *ngFor="let j of displayKeyColumn">{{i[j]}}</td>
+                </tr>
+              </tbody>
+            </table> 
             <ul class="pagination pull-right">
               <li><a href="#" *ngIf="prevPage" (click)="btnPrevPage()">&laquo;</a></li>
               <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="#" (click)="clickGetAPI(i.url)">{{i.index+1}}</a></li>
