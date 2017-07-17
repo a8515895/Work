@@ -30,13 +30,13 @@
       <ul class="nav navbar-nav">
         <!-- Messages: style can be found in dropdown.less-->
         <li class="header-search">
-            <div class="input-group input-group-sm ">
-              <input class="fade" [ngStyle]="{display : hid}" type="text" name="q" class="form-control" placeholder="Search..." autocomplete="off"
-              />
-              <span class="input-group-btn">
+          <div class="input-group input-group-sm ">
+            <input class="fade" [ngStyle]="{display : hid}" type="text" name="q" class="form-control" placeholder="Search..." autocomplete="off"
+            />
+            <span class="input-group-btn">
               <button type="button" name="search" id="search-btn" class="btn btn-flat pull-right"(click)="setAppear()"><i class="fa fa-search"></i></button>
               </span>
-            </div>
+          </div>
         </li>
         <li class="dropdown messages-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -243,12 +243,15 @@
 </aside>
 <!-- /.control-sidebar -->
 <div class="tab-content" (click)="setHidden()">
-  <div role="tabpanel" class="tab-head tab-pane active " id="qlkh">
+  <div role="tabpanel" class="tab-head tab-pane " id="qlkh">
     <app-customer-list (addDetailTab)="addTabDetail($event)"></app-customer-list>
   </div>
-   <div role="tabpanel" class="tab-head tab-pane" id="{{i.id}}" *ngFor="let i of tabDetail">
+  <div role="tabpanel" class="tab-head tab-pane active " id="activity">
+    <activity-list></activity-list>
+  </div>
+  <div role="tabpanel" class="tab-head tab-pane" id="{{i.id}}" *ngFor="let i of tabDetail">
     <app-customer-detail [value]="i.id"></app-customer-detail>
-  </div> 
+  </div>
   <div role="tabpanel" class="tab-head tab-pane" id="login">
     <login></login>
   </div>

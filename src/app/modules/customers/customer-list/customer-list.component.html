@@ -32,13 +32,17 @@
               <tr class="with-border-top">
                 <td>
                   <div class="checkbox margin-0">
-                    <md-checkbox [(ngModel)]="nameCheck" class=""> firstName </md-checkbox>
+                    <md-checkbox [(ngModel)]="nameCheck" class=""> Name </md-checkbox>
                     <div [hidden]="!nameCheck" class="filter-details">
                       <select #slName name="" id="" class="form-control">
                         <option value="like">Có Chứa</option>
                         <option value="unlike">Không Chứa</option>
                         <option value="="> = </option>
                         <option value="<>"> <> </option>
+                        <option value="null">Còn Trống</option>
+                        <option value="full">Không Trống</option>
+                        <option value="begin">Bắt Đầu Với</option>
+                        <option value="end">Kết thúc Với</option>
                       </select>
                       <md-input-container class="full-width">
                         <input #inName mdInput placeholder="Enter keyword">
@@ -57,6 +61,10 @@
                         <option value="unlike">Không Chứa</option>
                         <option value="="> = </option>
                         <option value="<>"> <> </option>
+                        <option value="null">Còn Trống</option>
+                        <option value="full">Không Trống</option>
+                        <option value="begin">Bắt Đầu Với</option>
+                        <option value="end">Kết thúc Với</option>
                       </select>
                       <md-input-container class="full-width">
                         <input #inMobile mdInput maxlength="12" placeholder="Enter number" value="">
@@ -71,13 +79,43 @@
                   <div class="checkbox margin-0">
                     <md-checkbox [(ngModel)]="adCheck" class=""> Address</md-checkbox>
                     <div [hidden]="!adCheck" class="filter-details">
-                      <select name="" id="" class="form-control">
-                        <option value="">Condition</option>
+                      <select #slAddress name="" id="" class="form-control">
+                        <option value="like">Có Chứa</option>
+                        <option value="unlike">Không Chứa</option>
                         <option value="="> = </option>
                         <option value="<>"> <> </option>
+                        <option value="null">Còn Trống</option>
+                        <option value="full">Không Trống</option>
+                        <option value="begin">Bắt Đầu Với</option>
+                        <option value="end">Kết thúc Với</option>
                       </select>
                       <md-input-container class="full-width">
-                        <input mdInput maxlength="12" placeholder="Enter number" value="">
+                        <input #inAddress mdInput placeholder="Enter address" value="">
+                        <md-hint align="end"></md-hint>
+                      </md-input-container>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="checkbox margin-0">
+                    <md-checkbox [(ngModel)]="dateCheck" class=""> Ngày Khởi Tạo</md-checkbox>
+                    <div [hidden]="!dateCheck" class="filter-details">
+                      <select #slDate name="" id="" class="form-control">
+                        <option value="=">Vào Lúc</option>
+                        <option value="before">Trước Ngày</option>
+                        <option value="after">Sau Ngày</option>
+                        <option value="today">Hôm Nay</option>
+                        <option value="yesterday">Hôm Qua</option>
+                        <option value="thisWeek">Tuần Này</option>
+                        <option value="thisMonth">Tháng Này</option>
+                        <option value="thisYear">Năm Này</option>
+                        <option value="null">Còn Trống</option>
+                        <option value="full">Không Trống</option>
+                      </select>
+                      <md-input-container class="full-width">
+                        <input #inDate mdInput type="date">
                         <md-hint align="end"></md-hint>
                       </md-input-container>
                     </div>
@@ -88,48 +126,36 @@
                 <td>
                   <div class="margin-0" [hidden]="hiddenBtnSearch">
                     <button (click)="filter()" class="btn btn-success">Áp dụng lọc</button>
-                    <button class="btn btn-danger">Hủy</button>
+                    <button (click)="endFilter()" class="btn btn-danger">Hủy</button>
                   </div>
                 </td>
               </tr>
             </table>
           </div>
           <div class="col-md-9 padding-0">
-             <!-- <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover">
               <thead>
-                <tr class="active">
+                <tr>
                   <th>
-                     <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown> 
+                    <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                      <span class="fa fa-plus"></span>
+                    </button>
                   </th>
+                  <th>ID</th>
+                  <th>Name</th>
                   <th *ngFor="let i of displayKeyColumn">{{i}}</th>
                 </tr>
               </thead>
               <tbody>
-                <tr (click)="getValueTab({id : customer.id, name : customer.firstName})" *ngFor="let customer of customersList">
+                <tr *ngFor="let i of arrDisplay">
                   <td></td>
-                  <th *ngFor="let i of displayColumn">{{ customer.id }}</th>
-                  <td>{{ customer.id }}</td>
-                  <td>{{ customer.firstName }}</td>
-                  <td>{{ customer.mobile }}</td>
-                  <td>{{ customer.email || '-' }}</td>
-                  <td>{{ customer.address || '-' }}</td> 
-                </tr>
-              </tbody>
-            </table>  -->
-             <table class="table table-bordered table-hover">
-              <tbody>
-                <tr>
-                  <td>
-                    <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
-                  </td>
-                  <td *ngFor="let i of displayKeyColumn">{{i}}</td>
-                </tr>
-                <tr *ngFor="let i of arr">
-                  <td></td>
+                  <td>{{i['id']}}</td>
+                  <td>{{i['name']}}</td>
                   <td *ngFor="let j of displayKeyColumn">{{i[j]}}</td>
                 </tr>
               </tbody>
-            </table> 
+            </table>
             <ul class="pagination pull-right">
               <li><a href="#" *ngIf="prevPage" (click)="btnPrevPage()">&laquo;</a></li>
               <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="#" (click)="clickGetAPI(i.url)">{{i.index+1}}</a></li>

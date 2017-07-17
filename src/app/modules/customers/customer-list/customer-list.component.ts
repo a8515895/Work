@@ -29,9 +29,14 @@ export class CustomerListComponent implements OnInit {
   nextPage: boolean = false;
   currentPage: number;
   pagination = new Array();
+
   //
 
   //Plus Column
+  @ViewChild('slAddCol') slAddCol;
+  @ViewChild('inAddNameCol') inAddNameCol;
+  @ViewChild('inAddValCol') inAddValCol;
+  displayKeyColumn = new Array();
   myOptions: IMultiSelectOption[];
   myTexts: IMultiSelectTexts = {
     checkAll: 'Chọn Hết',
@@ -48,50 +53,157 @@ export class CustomerListComponent implements OnInit {
     showUncheckAll: true,
     displayAllSelectedText: true
   };
-  arrKeyList = new Array();
+  arrKeyList = [{ id: "", name: "" }];
+
+  addColModel: any;
+  addColTexts: IMultiSelectTexts = {
+    checkAll: 'Chọn Hết',
+    uncheckAll: 'Bỏ Chọn Hết',
+    checked: 'Tên Hiển Thị',
+    checkedPlural: 'Tên Hiển Thị',
+    searchPlaceholder: 'Find',
+    defaultTitle: 'Chọn Tên Hiển Thị',
+    allSelected: 'Chọn Tất Cả',
+  };
+  addColSettings: IMultiSelectSettings = {
+    dynamicTitleMaxItems: 0,
+    enableSearch: true,
+    showCheckAll: true,
+    showUncheckAll: true,
+    displayAllSelectedText: true
+  };
+  arrAddColList: any;
   tempColumn = new Array();
   arr = [
     {
       id: '1',
-      name: 'khoa',
+      name: 'huỳnh khoa',
       phone: '0938247099',
       mail: 'a8515895@gmail.com',
+      address: '243 tạ quang bửu',
+      date: '22/08/2017'
     },
     {
       id: '2',
-      name: 'bu',
+      name: 'ngọc bu',
       phone: '01635076638',
       mail: 'b8515895@gmail.com',
+      address: 'Konoha',
+      date: '10/08/2017'
     },
     {
       id: '3',
-      name: 'bin',
+      name: 'bin bé bỏng',
       phone: '0991235468',
       mail: 'd8515895@gmail.com',
+      address: '85 Trần Phú',
+      date: '08/07/2017'
     },
     {
       id: '4',
-      name: 'khoi',
+      name: 'khoi trần huỳnh',
       phone: '0175549854',
       mail: 'e8515895@gmail.com',
+      address: '15 Phàm Phú',
+      date: '15/09/2017'
+    },
+    {
+      id: '5',
+      name: 'thanh ngọc tri',
+      phone: '',
+      mail: 'f8515895@gmail.com',
+      address: '11/5 Phạm Văn Thư',
+      date: '11/07/2017'
+    },
+    {
+      id: '6',
+      name: 'tôn thất bảo minh',
+      phone: '',
+      mail: '',
+      address: '',
+      date: '04/06/2017'
+    },
+    {
+      id: '7',
+      name: 'huỳnh',
+      phone: '',
+      mail: 'f8515895@gmail.com',
+      address: '11/5 Phạm Văn Thư',
+      date: '17/07/2017'
+    },
+    {
+      id: '8',
+      name: 'tôn thất bảo minh',
+      phone: '',
+      mail: '',
+      address: '',
+      date: '16/07/2017'
     },
   ];
-  displayColumn = [
+  arrDisplay = [
     {
-      value: [1, 'khoa']
+      id: '1',
+      name: 'huỳnh khoa',
+      phone: '0938247099',
+      mail: 'a8515895@gmail.com',
+      address: '243 tạ quang bửu',
+      date: '22/08/2017'
     },
     {
-      value: [2, 'bu']
+      id: '2',
+      name: 'ngọc bu',
+      phone: '01635076638',
+      mail: 'b8515895@gmail.com',
+      address: 'Konoha',
+      date: '10/08/2017'
     },
     {
-      value: [3, 'bo']
-    }
+      id: '3',
+      name: 'bin bé bỏng',
+      phone: '0991235468',
+      mail: 'd8515895@gmail.com',
+      address: '85 Trần Phú',
+      date: '08/07/2017'
+    },
+    {
+      id: '4',
+      name: 'khoi trần huỳnh',
+      phone: '0175549854',
+      mail: 'e8515895@gmail.com',
+      address: '15 Phàm Phú',
+      date: '15/09/2017'
+    },
+    {
+      id: '5',
+      name: 'thanh ngọc tri',
+      phone: '',
+      mail: 'f8515895@gmail.com',
+      address: '11/5 Phạm Văn Thư',
+      date: '11/07/2017'
+    },
+    {
+      id: '6',
+      name: 'tôn thất bảo minh',
+      phone: '',
+      mail: '',
+      address: '',
+      date: '04/06/2017'
+    },
   ];
-  displayKeyColumn = ['id', 'name'];
-  hiddenColSelect: boolean = true;
   plusCol() {
-    this.arrKeyList = Object.keys(this.customersList[0]);
-    this.hiddenColSelect = false;
+    let check = true;
+    Object.keys(this.arr).forEach(e => {
+      if (e == this.inAddNameCol.nativeElement.value) check = false;
+    });
+    this.arr.forEach(element => {
+      this.addColModel.forEach(e => {
+        if (element.id == e) {
+          element[this.inAddNameCol.nativeElement.value] = this.inAddValCol.nativeElement.value;
+        }
+      });
+
+    });
+    return this.ngAfterViewInit();
   }
   //
 
@@ -100,79 +212,223 @@ export class CustomerListComponent implements OnInit {
   @ViewChild('inName') inName: any;
   @ViewChild('slMobile') slMobile: any;
   @ViewChild('inMobile') inMobile: any;
+  @ViewChild('slAddress') slAddress: any;
+  @ViewChild('inAddress') inAddress: any;
+  @ViewChild('slDate') slDate: any;
+  @ViewChild('inDate') inDate: any
   nameCheck: boolean = false;
   mobileCheck: boolean = false;
   adCheck: boolean = false;
+  dateCheck: boolean = false;
   hiddenBtnSearch: boolean = true;
   hiddenSearchInput: boolean = true;
   hiddenSearchInput2: boolean = false;
   filter() {
-    let temp = this.customerTempList;
+    let temp = this.arr;
+    let length;
     if (this.nameCheck) {
+      length = this.inName.nativeElement.value.split("").length;
       switch (this.slName.nativeElement.value) {
         case "=":
           temp = temp.filter(element => {
-            return element.firstName == this.inName.nativeElement.value
+            return element.name == this.inName.nativeElement.value
           });
           break;
         case "<>":
           temp = temp.filter(element => {
-            return element.firstName != this.inName.nativeElement.value
+            return element.name != this.inName.nativeElement.value
           });
           break;
         case "like":
           temp = temp.filter(element => {
-            return element.firstName.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) > -1;
+            return element.name.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) > -1;
           });
           break;
         case "unlike":
           temp = temp.filter(element => {
-            return element.firstName.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) == -1;
+            return element.name.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) == -1;
           });
           break;
-      }
-    }
-    if (this.mobileCheck) {
-      switch (this.slMobile.nativeElement.value) {
-        case "=":
+        case "null":
           temp = temp.filter(element => {
-            return element.mobile == this.inMobile.nativeElement.value
+            return element.name == "";
           });
           break;
-        case "<>":
+        case "full":
           temp = temp.filter(element => {
-            return element.mobile != this.inMobile.nativeElement.value
+            return element.name != "";
           });
           break;
-        case "like":
+        case "begin":
           temp = temp.filter(element => {
-            return element.mobile.toLowerCase().indexOf(this.inMobile.nativeElement.value.toLowerCase()) > -1;
+            return element.name.toLowerCase().substr(0, length) == this.inName.nativeElement.value.toLowerCase();
           });
           break;
-        case "unlike":
+        case "end":
           temp = temp.filter(element => {
-            return element.mobile.toLowerCase().indexOf(this.inMobile.nativeElement.value.toLowerCase()) == -1;
+            return element.name.toLowerCase().substr(-length, length) == this.inName.nativeElement.value.toLowerCase();
           });
           break;
 
       }
     }
-    return this.customersList = temp;
+    if (this.mobileCheck) {
+      length = this.inMobile.nativeElement.value.split("").length;
+      switch (this.slMobile.nativeElement.value) {
+        case "=":
+          temp = temp.filter(element => {
+            return element.phone == this.inMobile.nativeElement.value
+          });
+          break;
+        case "<>":
+          temp = temp.filter(element => {
+            return element.phone != this.inMobile.nativeElement.value
+          });
+          break;
+        case "like":
+          temp = temp.filter(element => {
+            return element.phone.toLowerCase().indexOf(this.inMobile.nativeElement.value.toLowerCase()) > -1;
+          });
+          break;
+        case "unlike":
+          temp = temp.filter(element => {
+            return element.phone.toLowerCase().indexOf(this.inMobile.nativeElement.value.toLowerCase()) == -1;
+          });
+          break;
+        case "null":
+          temp = temp.filter(element => {
+            return element.phone == "";
+          });
+          break;
+        case "full":
+          temp = temp.filter(element => {
+            return element.phone != "";
+          });
+          break;
+        case "begin":
+          temp = temp.filter(element => {
+            return element.phone.toLowerCase().substr(0, length) == this.inMobile.nativeElement.value.toLowerCase();
+          });
+          break;
+        case "end":
+          temp = temp.filter(element => {
+            return element.phone.toLowerCase().substr(-length, length) == this.inMobile.nativeElement.value.toLowerCase();
+          });
+          break;
+      }
+    }
+    if (this.adCheck) {
+      length = this.inAddress.nativeElement.value.split("").length;
+      switch (this.slAddress.nativeElement.value) {
+        case "=":
+          temp = temp.filter(element => {
+            return element.address == this.inAddress.nativeElement.value
+          });
+          break;
+        case "<>":
+          temp = temp.filter(element => {
+            return element.address != this.inAddress.nativeElement.value
+          });
+          break;
+        case "like":
+          temp = temp.filter(element => {
+            return element.address.toLowerCase().indexOf(this.inAddress.nativeElement.value.toLowerCase()) > -1;
+          });
+          break;
+        case "unlike":
+          temp = temp.filter(element => {
+            return element.address.toLowerCase().indexOf(this.inAddress.nativeElement.value.toLowerCase()) == -1;
+          });
+          break;
+        case "null":
+          temp = temp.filter(element => {
+            return element.address == "";
+          });
+          break;
+        case "full":
+          temp = temp.filter(element => {
+            return element.address != "";
+          });
+          break;
+        case "begin":
+          temp = temp.filter(element => {
+            return element.address.toLowerCase().substr(0, length) == this.inAddress.nativeElement.value.toLowerCase();
+          });
+          break;
+        case "end":
+          temp = temp.filter(element => {
+            return element.address.toLowerCase().substr(-length, length) == this.inAddress.nativeElement.value.toLowerCase();
+          });
+          break;
+
+      }
+    }
+    if (this.dateCheck) {
+      let date = new Date(this.inDate.nativeElement.value.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+      let d = date.getDate();
+      let m = "0" + Number(date.getMonth() + 1);
+      let y = date.getFullYear();
+      let day = d + '/' + m + '/' + y;
+      switch (this.slDate.nativeElement.value) {
+        case "=":
+          temp = temp.filter(element => {
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime() == new Date(day.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime();
+          });
+          break;
+        case "before":
+          temp = temp.filter(element => {
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")) < new Date(day.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+          });
+          break;
+        case "after":
+          temp = temp.filter(element => {
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")) > new Date(day.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+          });
+          break;
+        case "today":
+          temp = temp.filter(element => {
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime() == new Date().getTime();
+          });
+          break;
+        case "yesterday":
+          temp = temp.filter(element => {
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")) > new Date(day.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+          });
+          break;
+        case "null":
+          temp = temp.filter(element => {
+            return element.date == "";
+          });
+          break;
+        case "full":
+          temp = temp.filter(element => {
+            return element.date != "";
+          });
+          break;
+
+      }
+    }
+    return this.arrDisplay = temp;
+  }
+  endFilter() {
+    this.arrDisplay = this.arr;
   }
   //
   ngAfterViewChecked() {
-    if (this.nameCheck == true || this.mobileCheck == true || this.adCheck == true) {
+    if (this.nameCheck == true || this.mobileCheck == true || this.adCheck == true || this.dateCheck == true) {
       this.hiddenBtnSearch = false
     } else {
       this.hiddenBtnSearch = true
     }
   }
   ngAfterViewInit() {
-    this.arr;
-    this.displayColumn = new Array();
-    this.displayKeyColumn = new Array();
+    this.arrKeyList = new Array();
     Object.keys(this.arr[0]).forEach(e => {
-      this.arrKeyList.push({ id: e, name: e });
+      if (e != 'id' && e != 'name') this.arrKeyList.push({ id: e, name: e });
+    });
+    this.arrAddColList = new Array();
+    this.arr.forEach(e => {
+      this.arrAddColList.push({ id: e.id, name: e.name });
     });
   }
   //
@@ -243,5 +499,8 @@ export class CustomerListComponent implements OnInit {
     // this.displayColumn = this.optionsModel;
     let temp = new Array();
     this.displayKeyColumn = this.optionsModel;
+  }
+  onChange2() {
+    console.log(this.addColModel);
   }
 }

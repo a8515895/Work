@@ -1,0 +1,263 @@
+body {
+  font-family: "ProximaNovaRegular", Arial, sans-serif;
+  color: #111;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+}
+span{
+    outline: none;
+}
+div {
+  display: block;
+}
+a {
+    color: #2C7BD0;
+    outline: none medium;
+    text-decoration: none;
+}
+ul {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+  list-style: none outside none;
+}
+
+li {
+  background: none;
+  list-style: none outside none;
+  padding: 0 0 3px 20px;
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+table {
+  width: 100%;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+td,
+th {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+
+/* 1 */
+.colorlightGray2 {
+    color: #a09f9f;
+}
+.f15 {
+    font-size: 1.071rem;
+}
+.colorKsmalltext {
+    color: #7a7a7a;
+}
+.grayDate {
+    width: 32%;
+    font-size: 11px;
+    margin-top: 2px;
+}
+.smallPlusGraybtn {
+  background: #fff url(//img.zohostatic.com/crm/1188059/images/svgicons.svg) no-repeat -309px -1078px;
+  padding-left: 30px;
+  border: solid 1px #c4c4c4;
+}
+.alignright {
+    text-align: right!important;
+}
+.smallPlusGraybtn {
+  display: inline-block;
+}
+.newButton {
+  border-radius: 2px;
+  font-size: .929rem;
+  padding: 7.5px 15px;
+  margin-right: 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-font-smoothing: auto;
+  font-family: "ProximaNovaRegular", arial, sans-serif;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: push-button;
+  user-select: none;
+  white-space: pre;
+}
+.mB2 {
+    margin-bottom: 2px;
+}
+.cB, .cb, .clearB {
+    clear: both;
+}
+.fontSmoothAntialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.EventsActivity+span, .CallsActivity+span, .TasksActivity+span {
+    padding: 0 0 0 5px!important;
+}
+.mL10, .mlft {
+    margin-left: 10px!important;
+}
+.mt2, .mT2 {
+    margin-top: 2px;
+}
+.zoho-header {
+  background: #f8f8f8;
+  padding: 8px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.zoho-content {
+  border-top: 1px #EEE solid;
+  margin-top: -1px;
+  height: auto;
+  width: 100%;
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.kvtlistbgheader {
+  background: #fff
+}
+
+.overflhidden {
+  overflow: hidden;
+}
+
+.kvtlistbg {
+  overflow: hidden;
+  border-right: 1px solid #B4B4B4;
+}
+
+.positionRelative {
+  position: relative
+}
+
+.pB5 {
+  padding-bottom: 5px!important;
+}
+
+.pT27 {
+  padding-top: 27px;
+}
+
+.pR0 {
+  padding-right: 0px
+}
+
+.p0 {
+  padding: 0px;
+}
+
+.m0 {
+  margin: 0px;
+}
+
+.pR5per {
+  padding-right: 5%;
+}
+
+.cursorpointer {
+  cursor: pointer;
+}
+
+.pL5per {
+  padding-left: 5%;
+}
+
+.pB0 {
+  padding-bottom: 0px;
+}
+
+.pR5per {
+  padding-right: 5%;
+}
+
+.pL5per {
+  padding-left: 5%;
+}
+
+.pB0 {
+  padding-bottom: 0!important;
+}
+
+.ellipsistext {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overflhidden {
+  overflow: hidden !important;
+}
+.bordergraybot {
+  border-bottom: 1px solid #eeeeee;
+}
+.dIB {
+  display: inline-block;
+}
+.pB20 {
+  padding-bottom: 20px;
+}
+.pT20 {
+  padding-top: 20px;
+}
+.w100per {
+  width: 100%;
+}
+.CallsActivity {
+  width: 21px;
+  height: 22px;
+  margin-left: 15px;
+  display: inline-block;
+  padding: 0!important;
+}
+.w65per {
+    width: 65%;
+}
+.mB1 {
+    margin-bottom: 1px;
+}
+.fl{
+    float : left;
+}
+.vmiddle {
+    vertical-align: middle;
+}
+.EventsActivity {
+    width: 17px;
+    height: 19px;
+    margin-right: 5px;
+    margin-left: 15px;
+    display: inline-block;
+}
+.mw35per {
+    max-width: 35%;
+}

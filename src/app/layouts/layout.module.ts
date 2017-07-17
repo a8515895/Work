@@ -6,9 +6,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CustomersModule } from '../modules/customers/customers.module'; //Load modules customer
 import { UsersModule } from '../modules/users/users.module'; //Load module users
 import { VerifyModule } from '../modules/verify/verify.module'; //Load module users
+import { ActivityModule } from '../modules/activity/activity.module'; //Load module users
 
 @NgModule({
-    imports: [BrowserModule,CustomersModule,UsersModule,VerifyModule],
+    imports: [BrowserModule,CustomersModule,UsersModule,VerifyModule,ActivityModule],
     exports: [MainNavigationComponent,NotFoundComponent],
     declarations: [MainNavigationComponent,NotFoundComponent],
     providers: [],
