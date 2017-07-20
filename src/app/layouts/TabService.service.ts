@@ -32,6 +32,16 @@ export class TabService {
             } else {
                 this.tabDisplay = this.tabs;
             }
+        }else {
+            let vitri;
+            for (let j = 0; j < this.tabs.length; j++) {
+                if (tab.id == this.tabs[j].id) vitri = j;
+            }
+            if (vitri <= 4) {
+                this.tabDisplay = this.tabs.slice(0,5);
+            } else {
+                this.tabDisplay = this.tabs.slice(this.tabs.length - 5, 5 + (this.tabs.length - 5));
+            }
         }
     }
     addTicketTab() {
@@ -124,6 +134,16 @@ export class TabService {
                 this.atabDisplay = this.aTabs.slice(this.aTabs.length - 3, 3 + (this.aTabs.length - 3));
             } else {
                 this.atabDisplay = this.aTabs;
+            }
+        } else {
+            let vitri;
+            for (let j = 0; j < this.aTabs.length; j++) {
+                if (tab.id == this.aTabs[j].id) vitri = j;
+            }
+            if (vitri <= 2) {
+                this.atabDisplay = this.aTabs.slice(0, 3);
+            } else {
+                this.atabDisplay = this.aTabs.slice(this.aTabs.length - 3, 3 + (this.aTabs.length - 3));
             }
         }
     }

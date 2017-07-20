@@ -135,8 +135,8 @@
                         <span (click)="prevTab()" class="fa fa-arrow-left"></span>
                       </a>
                     </li>
-                    <li role="presentation" *ngFor="let i of tabs">
-                      <a href="#{{i.id}}" aria-controls="home" role="tab" data-toggle="tab">{{i.name}}</a>
+                    <li class="tab-activity" id="tab_{{i.id}}" role="presentation" *ngFor="let i of tabs;let in = index">
+                      <a href="#{{i.id}}"  aria-controls="home" role="tab" data-toggle="tab">{{i.name}} <span (click)="closeTab(in)" class="closeTab">X</span></a>                      
                     </li>
                     <li>
                       <a href="javascript:void(0)">
@@ -149,7 +149,7 @@
             </div>
             <div class="tab-content">
               <ng-template ngFor let-i [ngForOf]="tabs" let-index="index">
-                <div role="tabpanel" class="tab-pane" id="{{i.id}}">
+                <div role="tabpanel"  class="tab-pane tab-activity" id="{{i.id}}">
                   <activity-detail [value]="getActivity(i.id)"></activity-detail>
                 </div>
               </ng-template>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TabService } from '../../../layouts/TabService.service';
 import { Activity } from '../activity';
 import { ActivityService } from '../activity.service'
-
+declare var jQuery: any;
 @Component({
     selector: 'activity-list',
     templateUrl: 'activity-list.component.html',
@@ -12,10 +12,10 @@ import { ActivityService } from '../activity.service'
 
 export class ActivityListComponent implements OnInit {
     tabs: any;
-    
+
     activities: Activity[] = [];
-    constructor(private tabservice: TabService,private av : ActivityService) { }
-    getActivity(id : string){
+    constructor(private tabservice: TabService, private av: ActivityService) { }
+    getActivity(id: string) {
         return this.av.getActivityById(id);
     }
     ngOnInit() {
@@ -25,15 +25,22 @@ export class ActivityListComponent implements OnInit {
     nextTab() {
         return this.tabs = this.tabservice.nextATab();
     }
-    prevTab() { 
+    prevTab() {
         return this.tabs = this.tabservice.prevATab();
     }
     addTab(id: string, name: string) {
         this.tabservice.addATab({ id: id, name: name });
-        return this.tabs = this.tabservice.getListDisplayATab();
+        this.tabs = this.tabservice.getListDisplayATab();
+        jQuery('.tab-activity').removeClass('active');
+        jQuery('#tab_' + id).addClass('active');
+        this.chooseTab(id);
+        return this.tabs;
     }
     closeTab(index: number) {
         this.tabservice.closeATab(index);
         return this.tabs = this.tabservice.getListDisplayATab();
+    }
+    chooseTab(id: string) {
+        jQuery('#' + id).addClass('active');
     }
 }

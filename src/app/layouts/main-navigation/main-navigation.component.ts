@@ -26,6 +26,7 @@ export class MainNavigationComponent {
   }
   addTab(id: string, name: string) {
     this.tabservice.addTab({ id: id, name: name });
+    this.chooseTab(id);
     return this.tabs = this.tabservice.getListDisplayTab();
   }
   addTicketTab() {
@@ -47,7 +48,7 @@ export class MainNavigationComponent {
     this.customerDetail = $event;    
     return this.tabs = this.tabservice.getListDisplayTab();
   }
-  chooseTab(id : number){
+  chooseTab(id : string){
     jQuery('.tab-head').removeClass('active');
     jQuery('#'+id).addClass('active');
   }

@@ -1236,7 +1236,7 @@ tab table.dvbtnlayer tr td {
 .leftContainerctn {
   position: relative;
   overflow: auto;
-  height: 500px;
+  height: 100%;
 }
 
 .nobdr {
@@ -1370,7 +1370,16 @@ tab table.dvbtnlayer tr td {
 .lineHgt20 {
   line-height: 20px;
 }
-
+.closeTab {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 10px;
+    /* border: 1px solid; */
+    padding: 1px;
+    line-height: 15px;
+    /* border-radius: 1px; */
+}
 .tb_newmenu {
   position: relative;
   border-bottom: 1px solid #eaeaea;
