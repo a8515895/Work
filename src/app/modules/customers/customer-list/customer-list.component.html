@@ -133,29 +133,32 @@
             </table>
           </div>
           <div class="col-md-9 padding-0">
+            <div style="overflow : auto">
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th>
                     <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                      <span class="fa fa-plus"></span>
-                    </button>
                   </th>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th>Họ</th>
+                  <th>Tên</th>
+                  <th>SDT</th>
                   <th *ngFor="let i of displayKeyColumn">{{i}}</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let i of arrDisplay">
+                <tr (click)="getValueTab(i)" *ngFor="let i of customersList">
                   <td></td>
                   <td>{{i['id']}}</td>
-                  <td>{{i['name']}}</td>
+                  <td>{{i['lastName']}}</td>
+                  <td>{{i['firstName']}}</td>
+                  <td>{{i['mobile']}}</td>
                   <td *ngFor="let j of displayKeyColumn">{{i[j]}}</td>
                 </tr>
               </tbody>
             </table>
+            </div>
             <ul class="pagination pull-right">
               <li><a href="#" *ngIf="prevPage" (click)="btnPrevPage()">&laquo;</a></li>
               <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="#" (click)="clickGetAPI(i.url)">{{i.index+1}}</a></li>

@@ -1,0 +1,300 @@
+<style>
+  html:before {
+    content: "Zoho CRM";
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgb(26, 32, 43);
+    z-index: 1000;
+    font-size: 42px;
+    color: #fff;
+    text-align: center;
+    line-height: 100vh;
+    text-transform: uppercase;
+    font-family: ProximaNovaBold;
+    /* 	-webkit-animation-name: loading-breathe; */
+    /*     animation-name: loading-breathe; */
+    /*     -webkit-animation-duration: 1800ms; */
+    /*     animation-duration: 1800ms; */
+    /*     -webkit-animation-delay: 200ms; */
+    /*     animation-delay: 200ms; */
+    /*     -webkit-animation-timing-function: cubic-bezier(.73, .005, .42, 1.005); */
+    /*     animation-timing-function: cubic-bezier(.73, .005, .42, 1.005); */
+    /*     -webkit-animation-iteration-count: infinite; */
+    /*     animation-iteration-count: infinite; */
+    /*     -webkit-animation-direction: alternate; */
+    /*     animation-direction: alternate; */
+  }
+
+  @-webkit-keyframes loading-breathe {
+    from {
+      color: #424040;
+    }
+    to {
+      color: #fff;
+    }
+  }
+
+  @keyframes loading-breathe {
+    from {
+      color: #424040;
+    }
+    to {
+      color: #fff;
+    }
+  }
+
+  .page_initial_loading_hide:before {
+    display: none;
+  }
+
+</style>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="row">
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <h5>Tất Cả Hoạt Động</h5>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+        <button class="smallPlusGraybtn newbutton pull-right" style="align-items: flex-start;text-align: center;" type="button">Công Việc</button>
+        <button class="smallPlusGraybtn newbutton pull-right" style="align-items: flex-start;text-align: center;" type="button">Sự Kiện</button>
+        <button class="smallPlusGraybtn newbutton pull-right" style="align-items: flex-start;text-align: center;" type="button">Cuộc Gọi</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Default box -->
+    <div class="box">
+      <div class="box-body">
+
+        <div class="zoho-content">
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 kvtlistbgheader overflhidden pR0">
+            <div class="kvtlistbg positionRelative pB5">
+              <div class="pL5per pR5per pT27 pB5 ellipsistext">
+                Khách Hàng
+                <a href="#"></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 kvtlistbgheader overflhidden pR0">
+            <div class="kvtlistbg positionRelative pB5">
+              <div class="pL5per pR5per pT27 pB5 ellipsistext">
+                Mở Giao Dịch
+                <a href="#"></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 kvtlistbgheader overflhidden pR0">
+            <div class="kvtlistbg positionRelative pB5">
+              <div class="pL5per pR5per pT27 pB5 ellipsistext">
+                Chào Hàng
+                <a href="#"></a>
+              </div>
+              <div style="width : 100%">
+                <ul class="p0 m0 positionRelative">
+                  <li class="pL5per pR5per pB0 positionRelative cursorpointer">
+                    <div class="overflhidden bordergraybot">
+                      <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                        <div class="dIB w100per">
+                          <span class="fa fa-phone CallsActivity"></span>
+                          <span id="name" class="fL overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
+                            <a id="kvshowpopup" class="colorblack2" href="/crm/EntityInfo.do?module=Calls&amp;id=2618607000000150001">
+                              <span id="Subject" title="Outgoing call to Van A (103)">Outgoing call to Van A (103)</span>
+                          </a>
+                          </span>
+                          <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 26 </span>
+                        </div>
+                        <div class="overflhidden fL w65per mB1" title="Lead: Van A">
+                          <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">
+                             <a class="kt_smalltxt" id="kvshowpopup" href="/crm/EntityInfo.do?module=Leads&amp;id=2618607000000134031" target="_blank">Van A</a>
+                          </span>
+                          <span id="contactname" class="colorlightGray2 dIB fL ellipsistext vmiddle" style="width:40%;"></span>
+                        </div>
+                        <div class="dIB w100per mT2 mB2">
+                          <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Minh Van</a>
+                          <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Outbound</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="pL5per pR5per pB0 positionRelative cursorpointer">
+                    <div class="overflhidden bordergraybot">
+                      <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                        <div class="dIB w100per">
+                          <span class="fa fa-phone CallsActivity"></span>
+                          <span id="name" class="fL overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
+                            <a id="kvshowpopup" class="colorblack2" href="/crm/EntityInfo.do?module=Calls&amp;id=2618607000000150001">
+                              <span id="Subject" title="Outgoing call to Van A (103)">Outgoing call to Van A (103)</span>
+                          </a>
+                          </span>
+                          <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 26 </span>
+                        </div>
+                        <div class="overflhidden fL w65per mB1" title="Lead: Van A">
+                          <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">
+                             <a class="kt_smalltxt" id="kvshowpopup" href="/crm/EntityInfo.do?module=Leads&amp;id=2618607000000134031" target="_blank">Van A</a>
+                          </span>
+                          <span id="contactname" class="colorlightGray2 dIB fL ellipsistext vmiddle" style="width:40%;"></span>
+                        </div>
+                        <div class="dIB w100per mT2 mB2">
+                          <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Minh Van</a>
+                          <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Outbound</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="pL5per pR5per pB0 positionRelative cursorpointer">
+                    <div class="overflhidden bordergraybot">
+                      <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                        <div class="dIB w100per">
+                          <span class="fa fa-phone CallsActivity"></span>
+                          <span id="name" class="fL overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
+                            <a id="kvshowpopup" class="colorblack2" href="/crm/EntityInfo.do?module=Calls&amp;id=2618607000000150001">
+                              <span id="Subject" title="Outgoing call to Van A (103)">Outgoing call to Van A (103)</span>
+                          </a>
+                          </span>
+                          <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 26 </span>
+                        </div>
+                        <div class="overflhidden fL w65per mB1" title="Lead: Van A">
+                          <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">
+                             <a class="kt_smalltxt" id="kvshowpopup" href="/crm/EntityInfo.do?module=Leads&amp;id=2618607000000134031" target="_blank">Van A</a>
+                          </span>
+                          <span id="contactname" class="colorlightGray2 dIB fL ellipsistext vmiddle" style="width:40%;"></span>
+                        </div>
+                        <div class="dIB w100per mT2 mB2">
+                          <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Minh Van</a>
+                          <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Outbound</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="pL5per pR5per pB0 positionRelative cursorpointer">
+                    <div class="overflhidden bordergraybot">
+                      <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                        <div class="dIB w100per">
+                          <span class="fa fa-phone CallsActivity"></span>
+                          <span id="name" class="fL overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
+                            <a id="kvshowpopup" class="colorblack2" href="/crm/EntityInfo.do?module=Calls&amp;id=2618607000000150001">
+                              <span id="Subject" title="Outgoing call to Van A (103)">Outgoing call to Van A (103)</span>
+                          </a>
+                          </span>
+                          <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 26 </span>
+                        </div>
+                        <div class="overflhidden fL w65per mB1" title="Lead: Van A">
+                          <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">
+                             <a class="kt_smalltxt" id="kvshowpopup" href="/crm/EntityInfo.do?module=Leads&amp;id=2618607000000134031" target="_blank">Van A</a>
+                          </span>
+                          <span id="contactname" class="colorlightGray2 dIB fL ellipsistext vmiddle" style="width:40%;"></span>
+                        </div>
+                        <div class="dIB w100per mT2 mB2">
+                          <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Minh Van</a>
+                          <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Outbound</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="pL5per pR5per pB0 positionRelative cursorpointer">
+                    <div class="overflhidden bordergraybot">
+                      <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                        <div class="dIB w100per">
+                          <span class="fa fa-phone CallsActivity"></span>
+                          <span id="name" class="fL overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
+                            <a id="kvshowpopup" class="colorblack2" href="/crm/EntityInfo.do?module=Calls&amp;id=2618607000000150001">
+                              <span id="Subject" title="Outgoing call to Van A (103)">Outgoing call to Van A (103)</span>
+                          </a>
+                          </span>
+                          <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 26 </span>
+                        </div>
+                        <div class="overflhidden fL w65per mB1" title="Lead: Van A">
+                          <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">
+                             <a class="kt_smalltxt" id="kvshowpopup" href="/crm/EntityInfo.do?module=Leads&amp;id=2618607000000134031" target="_blank">Van A</a>
+                          </span>
+                          <span id="contactname" class="colorlightGray2 dIB fL ellipsistext vmiddle" style="width:40%;"></span>
+                        </div>
+                        <div class="dIB w100per mT2 mB2">
+                          <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Minh Van</a>
+                          <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Outbound</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 kvtlistbgheader overflhidden pR0">
+            <div class="kvtlistbg positionRelative pB5">
+              <div class="pL5per pR5per pT27 pB5 ellipsistext">
+                Liên Hệ
+                <a href="#"></a>
+              </div>
+              <div style="width : 100%">
+                <ul class="p0 m0 positionRelative">
+                  <ng-template ngFor let-i [ngForOf]="activities">
+                    <li *ngIf="i.type=='event'" class="pL5per pR5per pB0 positionRelative cursorpointer">
+                      <a href="#activity-list" (click)="getActivity(i.id)" role="tab" data-toggle="tab">
+                        <div class="overflhidden bordergraybot">
+                          <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                            <div class="dIB w100per">
+                              <span class="fa fa-calendar EventsActivity"></span>
+                              <span id="name" class="fL font16 mw35per ProximaNovaRegular fontSmoothAntialiased overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
+                                <a class="colorblack2">
+                                  <span id="Subject" title="Outgoing call to Van A (103)">{{i.name}}</span>
+                              </a>
+                              </span>
+                              <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 27,  9:00 SÁ - 9:30 SÁ </span>
+                            </div>
+                            <div class="dIB w100per mT2 mB2">
+                              <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Anh Khoa</a>
+                              <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Test</a>
+                            </div>
+                            <div class="clearB"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li *ngIf="i.type=='call'" class="pL5per pR5per pB0 positionRelative cursorpointer">
+                      <a href="#activity-list" (click)="getActivity(i.id)" role="tab" data-toggle="tab">
+                        <div class="overflhidden bordergraybot">
+                          <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                            <div class="dIB w100per">
+                              <span id="name" class="fL font16 mw35per ProximaNovaRegular fontSmoothAntialiased overflhidden" style="text-overflow: ellipsis;white-space:nowrap; ">
+                              <a href="#"><span id="Subject" title="Cuộc Gọi Mới">{{i.name}}</span></a>
+                              </span>
+                              <span class="fa  fa-phone CallsActivity fl"></span>
+                              <span class="fR  colorKsmalltext alignright  grayDate" style="width: 32%;" title=" Tháng 6 21 "> Tháng 6 21 </span>
+                            </div>
+                            <div class="overflhidden fL w65per mB1" title="Case: Tiêu đề yêu cầu">
+                              <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">  
+                              <a class="kt_smalltxt" id="" href="/crm/EntityInfo.do?module=Cases&amp;id=2618607000000121356" target="_blank">Tiêu đề yêu cầu</a> 
+                            </span>
+                            </div>
+                            <span class="fR mW35per font8 tkvPriority colorKsmalltext ellipsistext cursorPointer ProximaNovaRegular" title="">22 Phút</span>
+                            <div class="dIB w100per mT2 mB2">
+                              <a href="#" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular">Anh Khoa</a>
+                              <a id="Status" class="colorlightGray2  dIB fL  mL10 Đi ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="test">test</a>
+                            </div>
+                            <div class="clearB"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+
+                  </ng-template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box -->
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

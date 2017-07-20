@@ -224,49 +224,50 @@ export class CustomerListComponent implements OnInit {
   hiddenSearchInput: boolean = true;
   hiddenSearchInput2: boolean = false;
   filter() {
-    let temp = this.arr;
+    let temp = this.customerTempList;    
     let length;
     if (this.nameCheck) {
       length = this.inName.nativeElement.value.split("").length;
       switch (this.slName.nativeElement.value) {
         case "=":
           temp = temp.filter(element => {
-            return element.name == this.inName.nativeElement.value
+            console.log(element.firstName);
+            return element.firstName == this.inName.nativeElement.value
           });
           break;
         case "<>":
           temp = temp.filter(element => {
-            return element.name != this.inName.nativeElement.value
+            return element.firstName != this.inName.nativeElement.value
           });
           break;
         case "like":
           temp = temp.filter(element => {
-            return element.name.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) > -1;
+            return element.firstName.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) > -1;
           });
           break;
         case "unlike":
           temp = temp.filter(element => {
-            return element.name.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) == -1;
+            return element.firstName.toLowerCase().indexOf(this.inName.nativeElement.value.toLowerCase()) == -1;
           });
           break;
         case "null":
           temp = temp.filter(element => {
-            return element.name == "";
+            return element.firstName == "";
           });
           break;
         case "full":
           temp = temp.filter(element => {
-            return element.name != "";
+            return element.firstName != "";
           });
           break;
         case "begin":
           temp = temp.filter(element => {
-            return element.name.toLowerCase().substr(0, length) == this.inName.nativeElement.value.toLowerCase();
+            return element.firstName.toLowerCase().substr(0, length) == this.inName.nativeElement.value.toLowerCase();
           });
           break;
         case "end":
           temp = temp.filter(element => {
-            return element.name.toLowerCase().substr(-length, length) == this.inName.nativeElement.value.toLowerCase();
+            return element.firstName.toLowerCase().substr(-length, length) == this.inName.nativeElement.value.toLowerCase();
           });
           break;
 
@@ -408,7 +409,7 @@ export class CustomerListComponent implements OnInit {
 
       }
     }
-    return this.arrDisplay = temp;
+    return this.customersList = temp;
   }
   endFilter() {
     this.arrDisplay = this.arr;
@@ -423,9 +424,6 @@ export class CustomerListComponent implements OnInit {
   }
   ngAfterViewInit() {
     this.arrKeyList = new Array();
-    Object.keys(this.arr[0]).forEach(e => {
-      if (e != 'id' && e != 'name') this.arrKeyList.push({ id: e, name: e });
-    });
     this.arrAddColList = new Array();
     this.arr.forEach(e => {
       this.arrAddColList.push({ id: e.id, name: e.name });
@@ -437,7 +435,7 @@ export class CustomerListComponent implements OnInit {
     private routeParams: ActivatedRoute,
     private filterService: FilterService
   ) {
-    //this.getAPI();
+    this.getAPI();
   }
 
   setDisplayInput() {
@@ -451,8 +449,9 @@ export class CustomerListComponent implements OnInit {
         let j = 0;
         this.customersList = res.data;
         this.customerTempList = res.data;
-        Object.keys(res.data[0]).forEach(e => {
-          this.arrKeyList.push({ id: e, name: e });
+        Object.keys(this.customersList[0]).forEach(e => {
+          if (e != 'id' && e != 'firstName' && e != 'lastName' && e != 'mobile')
+            this.arrKeyList.push({ id: e, name: e });
         });
         this.pagination = [];
         for (i; i < res.last_page; i++) {
@@ -493,7 +492,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit() {
   };
   getValueTab(value: any) {
-    return this.valueTab.emit({ id: value.id, name: value.name });
+    return this.valueTab.emit({ id: value.id, name: value.firstName });
   }
   onChange() {
     // this.displayColumn = this.optionsModel;

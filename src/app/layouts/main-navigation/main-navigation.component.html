@@ -246,8 +246,14 @@
   <div role="tabpanel" class="tab-head tab-pane " id="qlkh">
     <app-customer-list (addDetailTab)="addTabDetail($event)"></app-customer-list>
   </div>
-  <div role="tabpanel" class="tab-head tab-pane active " id="activity">
+  <div role="tabpanel" class="tab-head tab-pane active" id="activity-category-list">
+    <activity-category-list></activity-category-list>
+  </div>
+  <div role="tabpanel" class="tab-head tab-pane"  id="activity-list">
     <activity-list></activity-list>
+  </div>
+  <div role="tabpanel" class="tab-head tab-pane  " id="detailActivity">
+    <activity-detail></activity-detail>
   </div>
   <div role="tabpanel" class="tab-head tab-pane" id="{{i.id}}" *ngFor="let i of tabDetail">
     <app-customer-detail [value]="i.id"></app-customer-detail>

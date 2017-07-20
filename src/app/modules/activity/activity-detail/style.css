@@ -7,6 +7,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+input,
+textarea {
+  outline: none;
+}
+
 #fullInfoNoteDiv {
   padding-left: 0;
 }
@@ -210,8 +215,6 @@ th {
   margin-top: 2px;
 }
 
-
-
 .newbutton,
 .primarybtn,
 .newSaveBtn,
@@ -245,11 +248,13 @@ th {
   cursor: pointer;
   outline: none;
 }
+
 .smallPlusGraybtn {
   background: #fff url(//img.zohostatic.com/crm/1188059/images/svgicons.svg) no-repeat -309px -1075px;
   padding-left: 30px;
   border: solid 1px #c4c4c4;
 }
+
 .alignright {
   text-align: right!important;
 }
@@ -406,6 +411,7 @@ span.dvSubTitle span>span,
 .mT2 {
   margin-top: 2px;
 }
+
 .kvtlistbgheader {
   background: #fff
 }
@@ -417,6 +423,23 @@ span.dvSubTitle span>span,
 .kvtlistbg {
   overflow: hidden;
   border-right: 1px solid #B4B4B4;
+}
+
+.graybtndark,
+.newgraybtn {
+  background-color: #fff;
+  color: #3c3c3c;
+  border: solid 1px #c4c4c4;
+}
+
+primarybtn,
+.rep_primarybtn,
+.newSaveBtn {
+  color: white!important;
+  border-radius: 2px!important;
+  background-color: #42a2eb!important;
+  border: solid 1px #42a2eb!important;
+  box-shadow: none!important;
 }
 
 .positionRelative {
@@ -1085,7 +1108,6 @@ tab table.dvbtnlayer tr td {
 
 .entitypopup {
   background-color: #f0f0f0;
-  border-bottom: 1px solid #c0c0c0;
   border-radius: 3px;
   border-top: 1px solid #fff;
   float: left;
@@ -1364,9 +1386,11 @@ tab table.dvbtnlayer tr td {
 .nobdr {
   border: 0!important;
 }
+
 .pB30 {
-    padding-bottom: 30px!important;
+  padding-bottom: 30px!important;
 }
+
 .lineHgt20 {
   line-height: 20px;
 }

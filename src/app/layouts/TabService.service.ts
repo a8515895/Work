@@ -9,6 +9,7 @@ export class TabService {
     constructor() {
         this.addTab(new Tab('qlkh', 'Quản Lý Khách Hàng'));
         this.addTab(new Tab('activity', 'Activity'));
+        this.addTab(new Tab('detailActivity', 'detail activity'));
     }
     getListTab() {
         return this.tabs;
@@ -32,7 +33,6 @@ export class TabService {
                 this.tabDisplay = this.tabs;
             }
         }
-
     }
     addTicketTab() {
         this.addTab(new Tab(this.ticketTab.toString(), 'Ticket tab số ' + this.ticketTab));
@@ -41,7 +41,7 @@ export class TabService {
         console.log(this.tabDetail);
     }
     addTabDetail(tab: Tab) {
-        this.addTab(new Tab(tab.id,tab.name));
+        this.addTab(new Tab(tab.id, tab.name));
         this.tabDetail.push(tab);
         console.log(this.tabs);
         console.log(this.tabDisplay);
@@ -103,5 +103,85 @@ export class TabService {
             this.tabDisplay.unshift(this.tabs[vitribatdau - 1]);
         }
         return this.tabDisplay;
+    }
+    /// Activity Tab
+    private aTabs: Tab[] = [];
+    private atabDisplay: Tab[] = [];
+    getListATab() {
+        return this.aTabs;
+    }
+    getListDisplayATab() {
+        return this.atabDisplay;
+    }
+    addATab(tab: Tab) {
+        let check: boolean = true;
+        this.aTabs.forEach(element => {
+            if (element.id == tab.id) check = false;
+        });
+        if (check) {
+            this.aTabs.push(tab);
+            if (this.aTabs.length > 3) {
+                this.atabDisplay = this.aTabs.slice(this.aTabs.length - 3, 3 + (this.aTabs.length - 3));
+            } else {
+                this.atabDisplay = this.aTabs;
+            }
+        }
+    }
+    closeATab(index: number) {
+        let i = 0;
+        for (i = 0; i < this.aTabs.length; i++) {
+            if (this.aTabs[i].id == this.atabDisplay[index].id) break;
+        }
+        this.aTabs.splice(i, 1);
+        if (this.aTabs.length > 3) {
+            this.atabDisplay.splice(index, 1);
+            let vitribatdau = 0;
+            let vitricuoi = 2;
+            for (i = 0; i < this.aTabs.length; i++) {
+                if (this.aTabs[i].id == this.atabDisplay[0].id) vitribatdau = i;
+                if (this.aTabs[i].id == this.atabDisplay[3].id) vitricuoi = i;
+            }
+            if (this.aTabs[vitricuoi + 1] == null) {
+                this.atabDisplay.unshift(this.aTabs[vitribatdau - 1]);
+                console.log('vao vi tri cuoi null');
+            }
+            else {
+                this.atabDisplay.push(this.aTabs[vitricuoi + 1]);
+                console.log('vao vi tri bat dau null');
+            }
+        }
+        else {
+            this.atabDisplay = this.aTabs;
+        }
+        console.log(this.aTabs);
+        console.log(this.atabDisplay);
+    }
+    nextATab() {
+        let vitribatdau = 0;
+        let vitricuoi = 2;
+        let i: number;
+        for (i = 0; i < this.aTabs.length; i++) {
+            if (this.aTabs[i].id == this.atabDisplay[0].id) vitribatdau = i;
+            if (this.aTabs[i].id == this.atabDisplay[2].id) vitricuoi = i;
+        }
+        if (this.aTabs[vitricuoi + 1] != null) {
+            this.atabDisplay.shift();
+            this.atabDisplay.push(this.aTabs[vitricuoi + 1]);
+        }
+        return this.atabDisplay;
+    }
+    prevATab() {
+        let vitribatdau = 0;
+        let vitricuoi = 2;
+        let i: number;
+        for (i = 0; i < this.aTabs.length; i++) {
+            if (this.aTabs[i].id == this.atabDisplay[0].id) vitribatdau = i;
+            if (this.aTabs[i].id == this.atabDisplay[2].id) vitricuoi = i;
+        }
+        if (this.aTabs[vitribatdau - 1] != null) {
+            this.atabDisplay.pop();
+            this.atabDisplay.unshift(this.aTabs[vitribatdau - 1]);
+        }
+        return this.atabDisplay;
     }
 }
