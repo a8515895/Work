@@ -392,8 +392,9 @@ export class CustomerListComponent implements OnInit {
           });
           break;
         case "yesterday":
+          var yesterday = new Date();          
           temp = temp.filter(element => {
-            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")) > new Date(day.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getDate() == new Date().setDate(new Date().getDate()-1);
           });
           break;
         case "null":
