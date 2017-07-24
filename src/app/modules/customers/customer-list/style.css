@@ -1,0 +1,27 @@
+.collapse-view {
+    width: 10px;
+    background: #b4b4b4;
+    text-align: center;
+    line-height: 40px;
+    max-height: 40px;
+    top: 50%;
+    position: fixed;
+    left: 0;
+    cursor: pointer;
+    z-index: 5;
+}
+html,body{
+    height: 100%
+}
+.dIB {
+    display: inline-block;
+}
+input, span {
+    outline: none;
+}
+.isCollapse #filter{
+    display: none;
+}
+.w100{
+    width: 100%
+}

@@ -234,57 +234,54 @@
               </div>
               <div style="width : 100%">
                 <ul class="p0 m0 positionRelative">
-                  <ng-template ngFor let-i [ngForOf]="activities">
-                    <li *ngIf="i.type=='event'" class="pL5per pR5per pB0 positionRelative cursorpointer">
-                      <a href="#activity-list" (click)="getActivity(i.id)" role="tab" data-toggle="tab">
+                  <a href="#activity-list" role="tab" data-toggle="tab">
+                    <ng-template ngFor let-i [ngForOf]="activities">
+                      <li *ngIf="i.type=='event'" class="pL5per pR5per pB0 positionRelative cursorpointer">
                         <div class="overflhidden bordergraybot">
                           <div class="pT20 pB20 tkInnerInfo dIB w100per">
                             <div class="dIB w100per">
                               <span class="fa fa-calendar EventsActivity"></span>
                               <span id="name" class="fL font16 mw35per ProximaNovaRegular fontSmoothAntialiased overflhidden" style="text-overflow: ellipsis;white-space:nowrap; max-width: 58%">
-                                <a class="colorblack2">
-                                  <span id="Subject" title="Outgoing call to Van A (103)">{{i.name}}</span>
-                              </a>
-                              </span>
-                              <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 27,  9:00 SÁ - 9:30 SÁ </span>
-                            </div>
-                            <div class="dIB w100per mT2 mB2">
-                              <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Anh Khoa</a>
-                              <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Test</a>
-                            </div>
-                            <div class="clearB"></div>
-                          </div>
+                                  <a class="colorblack2">
+                                    <span id="Subject" title="Outgoing call to Van A (103)">{{i.name}}</span>
+                  </a>
+                  </span>
+                  <span class="fR f15 colorKsmalltext alignright  grayDate" style="width: 32%;" title="Thứ Hai Tháng 6 26, 2017 07:36 CH"> Tháng 6 27,  9:00 SÁ - 9:30 SÁ </span>
+                  </div>
+                  <div class="dIB w100per mT2 mB2">
+                    <a href="#" id="taskOwner" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular" title="Minh Van">Anh Khoa</a>
+                    <a id="Status" class="colorlightGray2  dIB fL  mL10 Outbound ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="Outbound">Test</a>
+                  </div>
+                  <div class="clearB"></div>
+                  </div>
+                  </div>
+                  </li>
+                  <li *ngIf="i.type=='call'" class="pL5per pR5per pB0 positionRelative cursorpointer">
+                    <div class="overflhidden bordergraybot">
+                      <div class="pT20 pB20 tkInnerInfo dIB w100per">
+                        <div class="dIB w100per">
+                          <span id="name" class="fL font16 mw35per ProximaNovaRegular fontSmoothAntialiased overflhidden" style="text-overflow: ellipsis;white-space:nowrap; ">
+                                <a href="#"><span id="Subject" title="Cuộc Gọi Mới">{{i.name}}</span></a>
+                          </span>
+                          <span class="fa  fa-phone CallsActivity fl"></span>
+                          <span class="fR  colorKsmalltext alignright  grayDate" style="width: 32%;" title=" Tháng 6 21 "> Tháng 6 21 </span>
                         </div>
-                      </a>
-                    </li>
-                    <li *ngIf="i.type=='call'" class="pL5per pR5per pB0 positionRelative cursorpointer">
-                      <a href="#activity-list" (click)="getActivity(i.id)" role="tab" data-toggle="tab">
-                        <div class="overflhidden bordergraybot">
-                          <div class="pT20 pB20 tkInnerInfo dIB w100per">
-                            <div class="dIB w100per">
-                              <span id="name" class="fL font16 mw35per ProximaNovaRegular fontSmoothAntialiased overflhidden" style="text-overflow: ellipsis;white-space:nowrap; ">
-                              <a href="#"><span id="Subject" title="Cuộc Gọi Mới">{{i.name}}</span></a>
+                        <div class="overflhidden fL w65per mB1" title="Case: Tiêu đề yêu cầu">
+                          <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">  
+                                <a class="kt_smalltxt" id="" href="/crm/EntityInfo.do?module=Cases&amp;id=2618607000000121356" target="_blank">Tiêu đề yêu cầu</a> 
                               </span>
-                              <span class="fa  fa-phone CallsActivity fl"></span>
-                              <span class="fR  colorKsmalltext alignright  grayDate" style="width: 32%;" title=" Tháng 6 21 "> Tháng 6 21 </span>
-                            </div>
-                            <div class="overflhidden fL w65per mB1" title="Case: Tiêu đề yêu cầu">
-                              <span id="relatedto" class="colorlightGray2 dIB fL  ellipsistext mW43per vmiddle">  
-                              <a class="kt_smalltxt" id="" href="/crm/EntityInfo.do?module=Cases&amp;id=2618607000000121356" target="_blank">Tiêu đề yêu cầu</a> 
-                            </span>
-                            </div>
-                            <span class="fR mW35per font8 tkvPriority colorKsmalltext ellipsistext cursorPointer ProximaNovaRegular" title="">22 Phút</span>
-                            <div class="dIB w100per mT2 mB2">
-                              <a href="#" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular">Anh Khoa</a>
-                              <a id="Status" class="colorlightGray2  dIB fL  mL10 Đi ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="test">test</a>
-                            </div>
-                            <div class="clearB"></div>
-                          </div>
                         </div>
-                      </a>
-                    </li>
-
+                        <span class="fR mW35per font8 tkvPriority colorKsmalltext ellipsistext cursorPointer ProximaNovaRegular" title="">22 Phút</span>
+                        <div class="dIB w100per mT2 mB2">
+                          <a href="#" class="colorKsmalltext dIB fL mW43per fL ellipsistext  ProximaNovaRegular">Anh Khoa</a>
+                          <a id="Status" class="colorlightGray2  dIB fL  mL10 Đi ellipsistext fontSmoothAntialiased  ProximaNovaRegular" title="test">test</a>
+                        </div>
+                        <div class="clearB"></div>
+                      </div>
+                    </div>
+                  </li>
                   </ng-template>
+                  </a>
                 </ul>
               </div>
             </div>

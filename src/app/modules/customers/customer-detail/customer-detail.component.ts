@@ -10,6 +10,7 @@ declare var jQuery: any;
   styleUrls: ['./customer-detail.component.css']
 })
 export class CustomerDetailComponent implements OnInit {
+  isCollapsed : boolean = true
   @Input('value') value: any;
   @Input('mdAutocomplete') autocomplete;
   @ViewChild('test') test: ElementRef;

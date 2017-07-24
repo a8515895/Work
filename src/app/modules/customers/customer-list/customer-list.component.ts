@@ -9,7 +9,7 @@ import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'ang
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css'],
+  styleUrls: ['style.css'],
   providers: [FilterService, CustomersService]
 })
 export class CustomerListComponent implements OnInit {
@@ -30,8 +30,21 @@ export class CustomerListComponent implements OnInit {
   currentPage: number;
   pagination = new Array();
 
+  //Colappse
+  collapse: boolean = false;
+  checkCollapse(col: boolean) {
+    return {
+      "fa-caret-left": !col,
+      "fa-caret-right": col
+    }
+  }
+  checkCollapse2(col: boolean) {
+    return {
+      "col-md-8": !col,
+      "col-md-12": col,
+    }
+  }
   //
-
   //Plus Column
   @ViewChild('slAddCol') slAddCol;
   @ViewChild('inAddNameCol') inAddNameCol;
@@ -443,7 +456,7 @@ export class CustomerListComponent implements OnInit {
     this.hiddenSearchInput = false;
     this.hiddenSearchInput2 = true;
   }
-  getAPI(link = "https://api-popupcontact-02.mitek.vn:4431/api/v1/customers") {
+  getAPI(link = "https://api-popupcontact-02.mitek.vn/api/v1/customers") {
     this.customersService.getCustomers(link).subscribe(
       (res: any) => {
         let i = 0;
@@ -458,9 +471,9 @@ export class CustomerListComponent implements OnInit {
         for (i; i < res.last_page; i++) {
           j++;
           if (i != 0) {
-            this.pagination.push({ url: 'https://api-popupcontact-02.mitek.vn:4431/api/v1/customers?page=' + (i + 1), index: i });
+            this.pagination.push({ url: 'https://api-popupcontact-02.mitek.vn/api/v1/customers?page=' + (i + 1), index: i });
           }
-          else this.pagination.push({ url: 'https://api-popupcontact-02.mitek.vn:4431/api/v1/customers', index: i });
+          else this.pagination.push({ url: 'https://api-popupcontact-02.mitek.vn/api/v1/customers', index: i });
 
           if (res.current_page >= 7) {
             if (j <= res.current_page - 6) this.pagination.shift();
@@ -477,10 +490,10 @@ export class CustomerListComponent implements OnInit {
     );
   }
   btnNextPage() {
-    this.clickGetAPI('https://api-popupcontact-02.mitek.vn:4431/api/v1/customers?page=' + (this.currentPage + 1));
+    this.clickGetAPI('https://api-popupcontact-02.mitek.vn/api/v1/customers?page=' + (this.currentPage + 1));
   }
   btnPrevPage() {
-    this.clickGetAPI('https://api-popupcontact-02.mitek.vn:4431/api/v1/customers?page=' + (this.currentPage - 1));
+    this.clickGetAPI('https://api-popupcontact-02.mitek.vn/api/v1/customers?page=' + (this.currentPage - 1));
   }
   setClassAcitve(index: number) {
     return {

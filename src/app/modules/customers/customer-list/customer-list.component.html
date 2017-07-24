@@ -15,8 +15,8 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-body">
-        <div class="row" class="listviewBorder">
-          <div class="col-md-3 padding-0 filter-module">
+        <div class="row" class="listviewBorder" collapse>
+          <div class="col-md-3 padding-0" id="filter">
             <table class="table table-bordered">
               <tr class="active">
                 <th [hidden]="hiddenSearchInput2" (click)="setDisplayInput()">FILTER BY ... <i class="fa fa-search pull-right"></i> </th>
@@ -132,7 +132,10 @@
               </tr>
             </table>
           </div>
-          <div class="col-md-9 padding-0">
+          <div class="padding-0" [ngClass]="checkCollapse2(col.isCollapse)" >
+            <div (collapse)="changeCollapse($event)" #col="collapse" style="float : left;text-align:center;height: 40px;width: 7px;background: #b4b4b4;cursor:pointer;color : white;display:table;margin-top: 130px;">
+              <span id="btnSlide" style="font-size:10px;display:table-cell;vertical-align : middle" class="fa fa-arrow-left" [ngClass]="checkCollapse(col.isCollapse)"></span>
+            </div>
             <div style="overflow : auto">
             <table class="table table-bordered table-hover">
               <thead>

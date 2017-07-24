@@ -38,14 +38,14 @@ export class CustomersService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   getDetailCustomers(id: number) {
-    return this.http.get("https://api-popupcontact-02.mitek.vn:4431/api/v1/customer/" + id)
+    return this.http.get("https://api-popupcontact-02.mitek.vn/api/v1/customer/" + id)
       .map(this.extractData)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   TestGet(): Observable<Customer[]> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post("https://api-popupcontact-02.mitek.vn:4431/api/v1/customers", headers, options)
+    return this.http.post("https://api-popupcontact-02.mitek.vn/api/v1/customers", headers, options)
       .map(res => res.json().data)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }

@@ -5,24 +5,24 @@
       <div class="col-md-9">
         <div class="box box-primary" style="padding-bottom : 10px">
           <div class="row">
-            <div class="col-xs-2 ">
+            <div class="col-md-2 ">
               <div class="box-body box-profile">
                 <img style="max-width : 65%" class="profile-user-img img-responsive img-circle img-bordered-sm" src="../../../../assets/images/avatars/avatar5.png"
                   alt="{{customerDetail.info.firstname}}">
               </div>
             </div>
-            <div class="col-xs-10 ">
-              <div class="row">
+            <div class="col-md-10 ">
+              <div class="row" style="margin-top: 5px;margin-bottom: 0px;">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                   <div class="profile-username">
                     {{customerDetail.info.firstName}} {{customerDetail.info.lastName}}
                     <a href="#"><img style="display: inline-block" class="img-responsive img-circle" src="../../../../assets/images/icon/fb.png" /></a>
                   </div>
-                  <p class="text-muted">Software Engineer</p>
+                  <p class="text-muted">Software Engineer</p> 
                 </div>
               </div>
-              <div class="row" style="margin-bottom : 1px">
-                <div class="col-xs-12" style="font-size : 11px;">
+              <div class="row" style="margin-bottom : 1px;">
+                <div class="col-xs-12" style="font-size : 11px;margin-top:-22px;margin-bottom:-15px">
                   <label style="margin : 2px;padding : 1px" *ngFor="let tag of customerDetail.info.tags_list; let index = index" class="'label label-success label-xs">
                         <small>{{tag.tag_name}}</small>
                         <a style="color : white;" href="#" (click)="removeTab(index)">x</a>

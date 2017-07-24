@@ -31,8 +31,10 @@ export class ActivityListComponent implements OnInit {
     addTab(id: string, name: string) {
         this.tabservice.addATab({ id: id, name: name });
         this.tabs = this.tabservice.getListDisplayATab();
-        jQuery('.tab-activity').removeClass('active');
+        jQuery('.tab-activity').removeClass('active');        
         jQuery('#tab_' + id).addClass('active');
+        jQuery('.acTab-active').removeClass('acTab-active');
+        jQuery('#acTab_'+id).addClass('acTab-active');
         this.chooseTab(id);
         return this.tabs;
     }

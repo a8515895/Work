@@ -6,7 +6,18 @@ body {
   padding: 0;
   text-rendering: optimizeLegibility;
 }
+html, body{
+    margin: 0;
+    padding: 0;
 
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+
+    min-height: 100%;
+    height: 100%;
+    max-height: 100%;
+}
 #fullInfoNoteDiv {
   padding-left: 0;
 }
@@ -1222,7 +1233,9 @@ tab table.dvbtnlayer tr td {
 .mB3 {
   margin-bottom: 3px;
 }
-
+.acTab-active{
+  background: #e4e4e4
+}
 .f16,
 .f17 {
   font-size: 1.143rem;
