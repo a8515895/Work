@@ -31,13 +31,13 @@ export class TabService {
             } else {
                 this.tabDisplay = this.tabs;
             }
-        }else {
+        } else {
             let vitri;
             for (let j = 0; j < this.tabs.length; j++) {
                 if (tab.id == this.tabs[j].id) vitri = j;
             }
             if (vitri <= 4) {
-                this.tabDisplay = this.tabs.slice(0,5);
+                this.tabDisplay = this.tabs.slice(0, 5);
             } else {
                 this.tabDisplay = this.tabs.slice(this.tabs.length - 5, 5 + (this.tabs.length - 5));
             }
@@ -132,19 +132,48 @@ export class TabService {
             if (this.aTabs.length > 3) {
                 this.atabDisplay = this.aTabs.slice(this.aTabs.length - 3, 3 + (this.aTabs.length - 3));
             } else {
-                this.atabDisplay = this.aTabs;
+                this.atabDisplay.push(tab);
             }
         } else {
-            let vitri;
-            for (let j = 0; j < this.aTabs.length; j++) {
-                if (tab.id == this.aTabs[j].id) vitri = j;
+            this.chooseTab(tab.id);
+        }
+    }
+    chooseTab(id: string) {
+        let check: boolean = true;
+        if (this.aTabs.length > 3) {
+            for (let i; i < this.atabDisplay; i++) {
+                if (this.atabDisplay[i].id == id) {
+                    check = false;
+                    break
+                }
             }
-            if (vitri <= 2) {
-                this.atabDisplay = this.aTabs.slice(0, 3);
-            } else {
-                this.atabDisplay = this.aTabs.slice(this.aTabs.length - 3, 3 + (this.aTabs.length - 3));
+            if (check) {
+                let vitri;
+                this.atabDisplay = new Array();
+                for (let j = 0; j < this.aTabs.length; j++) {
+                    if (this.aTabs[j].id == id) {
+                        vitri = j
+                        break;
+                    }
+                }
+                if (vitri == 0) {
+                    this.atabDisplay[0] = this.aTabs[vitri];
+                    this.atabDisplay[1] = this.aTabs[vitri+1];
+                    this.atabDisplay[2] = this.aTabs[vitri + 2];
+                }
+                else if (vitri == this.aTabs.length - 1) {
+                    this.atabDisplay[0] = this.aTabs[vitri-2];
+                    this.atabDisplay[1] = this.aTabs[vitri-1];
+                    this.atabDisplay[2] = this.aTabs[vitri];    
+                }
+                else {
+                    this.atabDisplay[0] = this.aTabs[vitri - 1];
+                    this.atabDisplay[1] = this.aTabs[vitri];
+                    this.atabDisplay[2] = this.aTabs[vitri + 1];
+                }
             }
         }
+        return this.atabDisplay;
     }
     closeATab(index: number) {
         let i = 0;
@@ -158,7 +187,7 @@ export class TabService {
             let vitricuoi = 2;
             for (i = 0; i < this.aTabs.length; i++) {
                 if (this.aTabs[i].id == this.atabDisplay[0].id) vitribatdau = i;
-                if (this.aTabs[i].id == this.atabDisplay[3].id) vitricuoi = i;
+                if (this.aTabs[i].id == this.atabDisplay[1].id) vitricuoi = i;
             }
             if (this.aTabs[vitricuoi + 1] == null) {
                 this.atabDisplay.unshift(this.aTabs[vitribatdau - 1]);
@@ -172,8 +201,6 @@ export class TabService {
         else {
             this.atabDisplay = this.aTabs;
         }
-        console.log(this.aTabs);
-        console.log(this.atabDisplay);
     }
     nextATab() {
         let vitribatdau = 0;
@@ -202,5 +229,21 @@ export class TabService {
             this.atabDisplay.unshift(this.aTabs[vitribatdau - 1]);
         }
         return this.atabDisplay;
+    }
+    checkNextPrev() {
+        if (this.aTabs.length > 3) {
+            let vitribatdau = 0;
+            let vitricuoi = 2;
+            let i: number;
+            for (i = 0; i < this.aTabs.length; i++) {
+                if (this.aTabs[i].id == this.atabDisplay[0].id) vitribatdau = i;
+                if (this.aTabs[i].id == this.atabDisplay[2].id) vitricuoi = i;
+            }
+            if (vitribatdau == 0) return 1;
+            else if (vitricuoi == this.aTabs.length - 1) return 2;
+            else return 0;
+        } else {
+            return -1;
+        }
     }
 }

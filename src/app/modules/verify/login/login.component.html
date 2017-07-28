@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-md-4 login-sec">
         <h2 class="text-center">Login Now</h2>
-        <form class="login-form">
+        <form class="login-form" #f="ngForm" (ngSubmit)="f.form.valid && login()">
           <div class="form-group">
-            <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+            <label for="exampleInputEmail1" [(ngModel)]="model.email" #email="ngModel" class="text-uppercase">Email</label>
             <input type="text" class="form-control" placeholder="Email">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+            <label for="exampleInputPassword1" [(ngModel)]="model.password" #password="ngModel" class="text-uppercase">Password</label>
             <input type="password" class="form-control" placeholder="">
           </div>
           <div class="form-check">
@@ -23,9 +23,9 @@
         </form>
         <div class="social-auth-links text-center">
           <p>- OR -</p>
-          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+          <a href="#" (click)="signIn('facebook')" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
-          <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+          <a href="#" (click)="signIn('google')" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a>
         </div>
       </div>

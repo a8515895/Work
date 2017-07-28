@@ -17,8 +17,6 @@ export class MainNavigationComponent {
   constructor(public tabservice: TabService,router: Router,private auth : AuthenticationService) {
     this.tabs = this.tabservice.getListDisplayTab();
     this.tabDetail = this.tabservice.getListTabDetail();
-    if(localStorage.getItem("currentUser")==null) router.navigate(['/login']);
-
   }
   logout(){
     return this.auth.logout();

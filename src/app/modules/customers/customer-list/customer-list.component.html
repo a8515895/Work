@@ -132,40 +132,50 @@
               </tr>
             </table>
           </div>
-          <div class="padding-0" [ngClass]="checkCollapse2(col.isCollapse)" >
+          <div class="padding-0" [ngClass]="checkCollapse2(col.isCollapse)">
             <div (collapse)="changeCollapse($event)" #col="collapse" style="float : left;text-align:center;height: 40px;width: 7px;background: #b4b4b4;cursor:pointer;color : white;display:table;margin-top: 130px;">
               <span id="btnSlide" style="font-size:10px;display:table-cell;vertical-align : middle" class="fa fa-arrow-left" [ngClass]="checkCollapse(col.isCollapse)"></span>
             </div>
             <div style="overflow : auto">
-            <table class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>
-                    <ss-multiselect-dropdown [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
-                  </th>
-                  <th>ID</th>
-                  <th>Họ</th>
-                  <th>Tên</th>
-                  <th>SDT</th>
-                  <th *ngFor="let i of displayKeyColumn">{{i}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr (click)="getValueTab(i)" *ngFor="let i of customersList">
-                  <td></td>
-                  <td>{{i['id']}}</td>
-                  <td>{{i['lastName']}}</td>
-                  <td>{{i['firstName']}}</td>
-                  <td>{{i['mobile']}}</td>
-                  <td *ngFor="let j of displayKeyColumn">{{i[j]}}</td>
-                </tr>
-              </tbody>
-            </table>
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      <ss-multiselect-dropdown (click)="setOptionSelect()" [texts]="myTexts" [settings]="mySettings" [options]="arrKeyList" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                    </th>
+                    <th>
+                      <div class="checkbox margin-0">
+                        <md-checkbox [(ngModel)]="allCheck" class="" (click)="checkAll()"></md-checkbox>
+                      </div>
+                    </th>
+                    <th>ID</th>
+                    <th>Họ</th>
+                    <th>Tên</th>
+                    <th>SDT</th>
+                    <th *ngFor="let i of displayKeyColumn">{{i}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of customersList; let index=index">
+                    <td></td>
+                    <td>
+                      <div class="checkbox margin-0">
+                        <md-checkbox [(ngModel)]="i.check" class="" (click)="checkClick(i.id)"></md-checkbox>
+                      </div>
+                    </td>
+                    <td (click)="getValueTab(i)">{{i['id']}}</td>
+                    <td (click)="getValueTab(i)">{{i['lastName']}}</td>
+                    <td (click)="getValueTab(i)">{{i['firstName']}}</td>
+                    <td (click)="getValueTab(i)">{{i['mobile']}}</td>
+                    <td (click)="getValueTab(i)" *ngFor="let j of displayKeyColumn">{{i[j]}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <ul class="pagination pull-right">
-              <li><a href="#" *ngIf="prevPage" (click)="btnPrevPage()">&laquo;</a></li>
-              <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="#" (click)="clickGetAPI(i.url)">{{i.index+1}}</a></li>
-              <li><a href="#" *ngIf="nextPage" (click)="btnNextPage()">&raquo;</a></li>
+              <li><a href="javascript:void(0)" *ngIf="prevPage" (click)="btnPrevPage()">&laquo;</a></li>
+              <li [ngClass]="setClassAcitve(i.index+1)" *ngFor="let i of pagination;"><a href="javascript:void(0)" (click)="clickGetAPI(i.url)">{{i.index+1}}</a></li>
+              <li><a href="javascript:void(0)" *ngIf="nextPage" (click)="btnNextPage()">&raquo;</a></li>
             </ul>
 
           </div>

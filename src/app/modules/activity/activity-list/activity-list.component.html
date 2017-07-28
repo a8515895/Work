@@ -130,15 +130,15 @@
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px">
                 <div role="tabpanel">
                   <ul class="nav nav-tabs" role="tablist" style="margin: 0px;margin-left: 15px;padding: 0;">
-                    <li style="padding : 0">
+                    <li style="padding : 0" *ngIf="displayPrev">
                       <a href="javascript:void(0)">
                         <span (click)="prevTab()" class="fa fa-arrow-left"></span>
                       </a>
                     </li>
-                    <li style="padding : 0;border : solid 1px #e4e4e4;" class="tab-activity" id="tab_{{i.id}}" role="presentation" *ngFor="let i of tabs;let in = index">
-                      <a href="#{{i.id}}"  aria-controls="home" role="tab" data-toggle="tab">{{i.name}} <span (click)="closeTab(in)" class="closeTab">X</span></a>                      
+                    <li style="padding : 0;border : solid 1px #e4e4e4;" class="tab-activity" id="tab_{{i.id}}" role="presentation" *ngFor="let i of tabsDisplay;let in = index">
+                      <a href="#{{i.id}}" (click)="chooseTab(i.id)"  aria-controls="home" role="tab" data-toggle="tab">{{i.name}} <span (click)="closeTab(in)" class="closeTab">X</span></a>                      
                     </li>
-                    <li style="padding : 0">
+                    <li style="padding : 0" *ngIf="displayNext">
                       <a href="javascript:void(0)">
                         <span class="fa fa-arrow-right" (click)="nextTab()"></span>
                       </a>

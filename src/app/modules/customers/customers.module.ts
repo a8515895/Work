@@ -12,8 +12,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CollapseDirective} from './collapse.directive'
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
-import { FilterPipe } from './pipe/filter.pipe';
-import { KeysPipe } from './pipe/key.pipe';
 @NgModule(
     {
         imports: [
@@ -28,11 +26,10 @@ import { KeysPipe } from './pipe/key.pipe';
             MultiselectDropdownModule,
             MdInputModule
         ],
-        declarations: [CustomerListComponent, CustomerDetailComponent,FilterPipe,KeysPipe,CollapseDirective],
+        declarations: [CustomerListComponent, CustomerDetailComponent,CollapseDirective],
         exports : [
             CustomerListComponent,
             CustomerDetailComponent,
-            FilterPipe,
             MdAutocompleteModule,
             MdInputModule,
             CollapseDirective

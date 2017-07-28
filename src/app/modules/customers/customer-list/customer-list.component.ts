@@ -1,5 +1,4 @@
 import { CustomersService } from './../customers.service';
-import { FilterService } from '../filter.service';
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { Customer } from './../customer';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -10,11 +9,12 @@ import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'ang
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['style.css'],
-  providers: [FilterService, CustomersService]
+  providers: [CustomersService]
 })
 export class CustomerListComponent implements OnInit {
   dataTest = '';
   optionsModel: any[];
+  allCheck: boolean = false;
   @Output("addDetailTab") valueTab = new EventEmitter<any>();
   customers: Customer[];
   customersList: any;
@@ -40,7 +40,7 @@ export class CustomerListComponent implements OnInit {
   }
   checkCollapse2(col: boolean) {
     return {
-      "col-md-8": !col,
+      "col-md-9": !col,
       "col-md-12": col,
     }
   }
@@ -66,7 +66,7 @@ export class CustomerListComponent implements OnInit {
     showUncheckAll: true,
     displayAllSelectedText: true
   };
-  arrKeyList = [{ id: "", name: "" }];
+
 
   addColModel: any;
   addColTexts: IMultiSelectTexts = {
@@ -237,7 +237,7 @@ export class CustomerListComponent implements OnInit {
   hiddenSearchInput: boolean = true;
   hiddenSearchInput2: boolean = false;
   filter() {
-    let temp = this.customerTempList;    
+    let temp = this.customerTempList;
     let length;
     if (this.nameCheck) {
       length = this.inName.nativeElement.value.split("").length;
@@ -405,9 +405,9 @@ export class CustomerListComponent implements OnInit {
           });
           break;
         case "yesterday":
-          var yesterday = new Date();          
+          var yesterday = new Date();
           temp = temp.filter(element => {
-            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getDate() == new Date().setDate(new Date().getDate()-1);
+            return new Date(element.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getDate() == new Date().setDate(new Date().getDate() - 1);
           });
           break;
         case "null":
@@ -426,7 +426,36 @@ export class CustomerListComponent implements OnInit {
     return this.customersList = temp;
   }
   endFilter() {
-    this.arrDisplay = this.arr;
+    this.getAPI();
+  }
+  //Check
+  checkAll() {
+    if (this.allCheck == false) {
+      this.customersList.forEach(element => {
+        this.arrCheck.push(element.id)
+        element.check = true;
+      });
+    } else {
+      this.customersList.forEach(element => {
+        element.check = false;
+      });
+      this.arrCheck = new Array();
+    }
+  }
+  arrCheck = new Array();
+  checkClick(id: string) {
+    this.customersList.forEach(e => {
+      if (e.id == id && e.check == false) {
+        this.arrCheck.push(e.id)
+        return
+      } else if (e.id == id && e.check == true) {
+        this.arrCheck.splice(this.arrCheck.indexOf(e.id), 1);
+        return
+      }
+    })
+    if (this.arrCheck.length == 10) this.allCheck = true;
+    else this.allCheck = false;
+    console.log(this.arrCheck.length);
   }
   //
   ngAfterViewChecked() {
@@ -437,7 +466,7 @@ export class CustomerListComponent implements OnInit {
     }
   }
   ngAfterViewInit() {
-    this.arrKeyList = new Array();
+
     this.arrAddColList = new Array();
     this.arr.forEach(e => {
       this.arrAddColList.push({ id: e.id, name: e.name });
@@ -447,7 +476,6 @@ export class CustomerListComponent implements OnInit {
   constructor(
     private customersService: CustomersService,
     private routeParams: ActivatedRoute,
-    private filterService: FilterService
   ) {
     this.getAPI();
   }
@@ -463,9 +491,8 @@ export class CustomerListComponent implements OnInit {
         let j = 0;
         this.customersList = res.data;
         this.customerTempList = res.data;
-        Object.keys(this.customersList[0]).forEach(e => {
-          if (e != 'id' && e != 'firstName' && e != 'lastName' && e != 'mobile')
-            this.arrKeyList.push({ id: e, name: e });
+        this.customersList.forEach(element => {
+          element.check = false;
         });
         this.pagination = [];
         for (i; i < res.last_page; i++) {
@@ -501,6 +528,7 @@ export class CustomerListComponent implements OnInit {
     }
   }
   clickGetAPI(link) {
+    console.log(link);
     return this.getAPI(link);
   }
   ngOnInit() {
@@ -508,12 +536,23 @@ export class CustomerListComponent implements OnInit {
   getValueTab(value: any) {
     return this.valueTab.emit({ id: value.id, name: value.firstName });
   }
+  arrTest = new Array();
+  arrKeyList: IMultiSelectOption[] = [{
+    id : '',
+    name : ''
+  }];
+  setOptionSelect() {
+    this.arrKeyList = new Array();
+    Object.keys(this.customersList[0]).forEach(e => {
+      if (e != 'id' && e != 'firstName' && e != 'lastName' && e != 'mobile')
+        this.arrKeyList.push({ id: e, name: e });
+    });
+    console.log(this.arrKeyList);
+    return this.arrKeyList;
+  }
   onChange() {
     // this.displayColumn = this.optionsModel;
     let temp = new Array();
     this.displayKeyColumn = this.optionsModel;
-  }
-  onChange2() {
-    console.log(this.addColModel);
   }
 }
